@@ -1,1 +1,60 @@
 services:
+  # PostgreSQL
+  postgresql:
+    container_name: ms-learning-platform_postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: change_me!
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - ms-learning-platform-net
+
+  # MongoDB
+  mongodb:
+    image: mongo
+    container_name: ms-learning-platform_mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=change_me!
+    networks:
+      - ms-learning-platform-net
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3.13.7-management
+    container_name: ms-learning-platform_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: change_me!
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - ms-learning-platform-net
+
+# -----------------
+networks:
+  ms-learning-platform-net:
+    driver: bridge
+
+# -----------------
+volumes:
+  postgres:
+  mongo:
+  rabbitmq_data:
+
+# TODO:
+# [ ] Configure Keycloak container
+# [ ] Configure Zipkin container
+# [ ] Configure Maildev container
