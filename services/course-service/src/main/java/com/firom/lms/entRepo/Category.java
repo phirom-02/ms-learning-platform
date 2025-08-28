@@ -11,11 +11,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "course")
+@Table(name = "category")
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
@@ -23,5 +23,5 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
-    private List<Course> products;
+    private List<Course> courses;
 }

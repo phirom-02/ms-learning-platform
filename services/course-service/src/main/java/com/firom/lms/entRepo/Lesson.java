@@ -4,19 +4,17 @@ import com.firom.lms.constants.LessonResourceType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
 @Entity
-@Table(name = "course")
+@Table(name = "lesson")
 public class Lesson {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String title;
@@ -28,5 +26,6 @@ public class Lesson {
     private Course course;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "resource_type")
     private LessonResourceType resourceType;
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class Course {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String title;
@@ -26,6 +26,6 @@ public class Course {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "lesson", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
     private List<Lesson> lessons;
 }
