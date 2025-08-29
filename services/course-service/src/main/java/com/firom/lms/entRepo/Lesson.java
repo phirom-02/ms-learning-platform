@@ -22,7 +22,7 @@ public class Lesson {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
+    @JoinColumn(name = "course_id", updatable = false)
     private Course course;
 
     @Enumerated(EnumType.STRING)

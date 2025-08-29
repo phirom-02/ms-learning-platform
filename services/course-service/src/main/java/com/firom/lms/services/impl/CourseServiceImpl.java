@@ -3,6 +3,7 @@ package com.firom.lms.services.impl;
 import com.firom.lms.dto.mapper.CourseMapper;
 import com.firom.lms.dto.request.CourseResponse;
 import com.firom.lms.dto.request.SaveCourseRequest;
+import com.firom.lms.entRepo.Course;
 import com.firom.lms.entRepo.CourseRepository;
 import com.firom.lms.services.CategoryService;
 import com.firom.lms.services.CourseService;
@@ -30,9 +31,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseResponse getCourseById(Integer courseId) {
-        return courseRepository.findById(courseId)
-                .map(courseMapper::EntityToCourseResponse)
-                .orElseThrow(() -> new EntityNotFoundException("No course found with Id: " + courseId));
+        return courseMapper.EntityToCourseResponse(getCourseEntityById(courseId));
     }
 
     @Override
@@ -44,16 +43,22 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourseById(Integer courseId) {
-        getCourseById(courseId);
+        getCourseEntityById(courseId);
         courseRepository.deleteById(courseId);
     }
 
     @Override
     public CourseResponse updateCourse(Integer courseId, SaveCourseRequest request) {
-        getCourseById(courseId);
+        var course = getCourseEntityById(courseId);
         var category = categoryService.getCategoryEntityById(request.getCategoryId());
-        var courseToUpdate = courseMapper.saveCourseRequestToEntity(request, category);
-        var course = courseRepository.save(courseToUpdate);
-        return courseMapper.EntityToCourseResponse(course);
+        var courseToUpdate = courseMapper.saveCourseRequestToEntity(request, course, category);
+        var updatedCourse = courseRepository.save(courseToUpdate);
+        return courseMapper.EntityToCourseResponse(updatedCourse);
+    }
+
+    @Override
+    public Course getCourseEntityById(Integer courseId) {
+        return courseRepository.findById(courseId)
+                .orElseThrow(() -> new EntityNotFoundException("No course found with Id: " + courseId));
     }
 }

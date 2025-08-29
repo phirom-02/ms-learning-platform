@@ -18,6 +18,14 @@ public class CourseMapper {
                 .build();
     }
 
+    public Course saveCourseRequestToEntity(SaveCourseRequest request, Course course, Category category) {
+        course.setId(request.getId());
+        course.setTitle(request.getTitle());
+        course.setDescription(request.getDescription());
+        course.setCategory(category);
+        return course;
+    }
+
     public CourseResponse EntityToCourseResponse(Course course) {
         return CourseResponse.builder()
                 .id(course.getId())
