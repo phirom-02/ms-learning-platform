@@ -4,6 +4,7 @@ import com.firom.lms.dto.mapper.UserMapper;
 import com.firom.lms.dto.request.CreateUserRequest;
 import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
+import com.firom.lms.entRepo.User;
 import com.firom.lms.entRepo.UserRepository;
 import com.firom.lms.exceptions.CustomDuplicateKeyException;
 import com.firom.lms.exceptions.EntityNotFoundException;
@@ -24,11 +25,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserResponse createUser(CreateUserRequest request) {
+    public User createUser(CreateUserRequest request) {
         try {
             var userToCreate = userMapper.createUserRequestToEntity(request);
-            var createdUser = userRepository.save(userToCreate);
-            return userMapper.entityToUserResponse(createdUser);
+            return userRepository.save(userToCreate);
         } catch (DuplicateKeyException e) {
             throw new CustomDuplicateKeyException("This email in used: " + request.getEmail());
         }
@@ -50,14 +50,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse updateUser(String userId, UpdateUserRequest request) {
-        var user = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException(""));
-
-        var userToUpdate = userMapper.updateUserRequestToEntity(request, user);
-
-        var updatedUser = userRepository.save(userToUpdate);
-
-        return userMapper.entityToUserResponse(updatedUser);
+//        var user = userRepository.findById(userId)
+//                .orElseThrow(() -> new EntityNotFoundException(""));
+//
+//        var userToUpdate = userMapper.updateUserRequestToEntity(request, user);
+//
+//        var updatedUser = userRepository.save(userToUpdate);
+//
+//        return userMapper.entityToUserResponse(updatedUser);
+        return null;
     }
 
     @Override

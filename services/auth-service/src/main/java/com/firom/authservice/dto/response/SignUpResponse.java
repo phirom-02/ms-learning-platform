@@ -1,6 +1,6 @@
-package com.firom.lms.dto.response;
+package com.firom.authservice.dto.response;
 
-import com.firom.lms.entRepo.UserRoles;
+import com.firom.authservice.entRepo.UserRoles;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
+public class SignUpResponse {
     private String id;
     private String firstName;
     private String lastName;

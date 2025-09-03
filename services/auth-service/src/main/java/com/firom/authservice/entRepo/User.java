@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -29,5 +30,7 @@ public class User {
 
     private boolean enabled;
 
+    private LocalDateTime createdAt;
 
+    private LocalDateTime updatedAt;
 }

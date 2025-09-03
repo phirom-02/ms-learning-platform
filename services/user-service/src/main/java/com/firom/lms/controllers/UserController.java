@@ -4,6 +4,7 @@ import com.firom.lms.dto.request.CreateUserRequest;
 import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.ApiResponse;
 import com.firom.lms.dto.response.UserResponse;
+import com.firom.lms.entRepo.User;
 import com.firom.lms.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody CreateUserRequest request) {
+    public ResponseEntity<ApiResponse<User>> createUser(@RequestBody CreateUserRequest request) {
         var response = new ApiResponse<>(userService.createUser(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

@@ -43,24 +43,17 @@ services:
     networks:
       - ms-learning-platform-net
 
-  # Keycloak
-  keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: ms-learning-platform_keycloak
-    ports:
-      - "8889:8080"
-    depends_on:
-      - postgresql
+  redis:
+    image: redis:latest
+    container_name:  ms-learning-platform_redis
     restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
     environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=change_me!
-      - DB_VENDOR=postgres
-      - DB_ADDR=postgres:5432
-      - DB_DATABASE=keycloak
-      - DB_USER=admin
-      - DB_PASSWORD=change_me!
-    command: start-dev
+      - REDIS_PASSWORD=change_me!
     networks:
       - ms-learning-platform-net
 
@@ -74,6 +67,7 @@ volumes:
   postgres:
   mongo:
   rabbitmq_data:
+  redis_data:
 
 # TODO:
 # [x] Configure Keycloak container

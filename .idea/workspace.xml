@@ -4,34 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement lesson CRUD features">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/auth-service.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/JwksController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/CustomUserDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/UserRoles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/CustomUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/CustomUserDetailsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/JwtServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/utils/RSAKeyUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/auth-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2bda98e-1ff6-49da-afed-2f9f48cc3dc9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2bda98e-1ff6-49da-afed-2f9f48cc3dc9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement authorization server in auth-service module">
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/dto/request/SignUpRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/dto/response/SignUpResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/remotes/client/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/AuthServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/entRepo/UserRoles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/gateway-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/gateway-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/request/CreateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/request/CreateUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/response/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/response/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/entRepo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/entRepo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/services/auth-service">
@@ -176,6 +177,15 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.firom.lms.entRepo" />
+      <recent name="com.firom.authservice.remotes.client" />
+      <recent name="com.firom.authservice.services" />
+      <recent name="com.firom.authservice.dto.request" />
+      <recent name="com.firom.authservice.dto.response" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -185,7 +195,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.auth-service [clean]">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="auth-service [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -208,7 +218,7 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="auth-service [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="auth-service [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/services/auth-service" />
@@ -220,27 +230,6 @@
         <option name="taskNames">
           <list>
             <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="idp-service [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services/idp-service" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
             <option value="build" />
           </list>
         </option>
@@ -252,10 +241,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="idp-service [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="auth-service [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services/idp-service" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/auth-service" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -328,13 +317,21 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Gradle.auth-service [clean build]" />
         <item itemvalue="Gradle.auth-service [build]" />
         <item itemvalue="Gradle.auth-service [clean]" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
-        <item itemvalue="Gradle.idp-service [clean]" />
-        <item itemvalue="Gradle.idp-service [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -362,7 +359,7 @@
       <workItem from="1756702135590" duration="314000" />
       <workItem from="1756709895374" duration="12400000" />
       <workItem from="1756803762270" duration="12000" />
-      <workItem from="1756860425342" duration="9383000" />
+      <workItem from="1756860425342" duration="13264000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -380,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756455739259</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: implement authorization server in auth-service module">
+      <option name="closed" value="true" />
+      <created>1756870856797</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1756870856797</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,6 +404,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: implement lesson CRUD features" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement lesson CRUD features" />
+    <MESSAGE value="feat: implement authorization server in auth-service module" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement authorization server in auth-service module" />
   </component>
 </project>

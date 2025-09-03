@@ -1,4 +1,4 @@
-package com.firom.lms.dto.request;
+package com.firom.authservice.dto.request;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateUserRequest {
+public class SignUpRequest {
 
     @NotEmpty(message = "First name is required")
     private String firstName;
@@ -29,6 +29,9 @@ public class CreateUserRequest {
 
     @NotEmpty(message = "Password is required")
     private String password;
+
+    @NotEmpty(message = "Password confirm is required")
+    private String passwordConfirm;
 
     @NotNull(message = "User roles is required")
     private List<String> roles;

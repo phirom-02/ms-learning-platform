@@ -1,4 +1,4 @@
-package com.firom.lms.dto.request;
+package com.firom.authservice.dto.request;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
