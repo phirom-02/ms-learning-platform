@@ -55,15 +55,7 @@ public class CustomUserDetails implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 
-    public User getUser() {
-        return user;
+    public String getEmail() {
+        return user.getEmail();
     }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-//    public String getEmail() {
-//        return user.getEmail();
-//    }
 }

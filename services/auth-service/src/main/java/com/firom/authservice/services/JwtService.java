@@ -12,6 +12,8 @@ public interface JwtService {
 
     String generateToken(String subject, Map<String, Object> claims, long ttlMillis);
 
+    boolean isTokenValid(String token);
+
     Map<String, Object> getClaims(String token);
 
     <T> T extractClaim(String token, Function<JWTClaimsSet, T> claimsResolver);

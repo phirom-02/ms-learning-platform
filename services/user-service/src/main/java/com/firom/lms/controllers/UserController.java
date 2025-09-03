@@ -50,4 +50,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT)
                 .body(null);
     }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<ApiResponse<User>> getUserByEmail(@PathVariable(name = "username") String username) {
+        var response = new ApiResponse<>(userService.getUserByUsername(username));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
 }

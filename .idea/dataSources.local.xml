@@ -20,10 +20,15 @@
       </schema-mapping>
     </data-source>
     <data-source name="lms mongo" uuid="d0ff658b-e4cf-42c7-b9a9-2f2a577c5b9f">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MONGO" />
+      <database-info product="Mongo DB" version="8.0.12" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.20" dbms="MONGO" exact-version="8.0.12" exact-driver-version="1.20" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>master_key</secret-storage>
       <user-name>admin</user-name>
-      <schema-mapping />
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="user" />
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
   </component>
 </project>

@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse getUserById(String userId) {
         return userRepository.findById(userId)
                 .map(userMapper::entityToUserResponse)
-                .orElseThrow(() -> new EntityNotFoundException(""));
+                .orElseThrow(() -> new EntityNotFoundException("No user found with id: " + userId));
     }
 
     @Override
@@ -65,5 +65,11 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(String userId) {
         getUserById(userId);
         userRepository.deleteById(userId);
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("No user found with username: " + username));
     }
 }

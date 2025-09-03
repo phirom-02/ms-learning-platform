@@ -31,6 +31,7 @@ public class UserMapper {
 
     public UserResponse entityToUserResponse(User user) {
         return UserResponse.builder()
+                .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .username(user.getUsername())

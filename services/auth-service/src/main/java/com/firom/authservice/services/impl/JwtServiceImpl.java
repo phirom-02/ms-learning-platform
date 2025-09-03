@@ -31,12 +31,12 @@ public class JwtServiceImpl implements JwtService {
 
     // Generate token
     @Override
-    public String generateToken(String subject, Map<String, Object> customClaims, long ttlMillis) {
+    public String generateToken(String subject, Map<String, Object> customClaims, long ttlSeconds) {
         try {
             JWSSigner signer = new RSASSASigner(rsaKey.toPrivateKey());
 
             Date now = new Date();
-            Date expiration = new Date(now.getTime() + ttlMillis);
+            Date expiration = new Date(now.getTime() + ttlSeconds * 1000);
 
 
             JWTClaimsSet.Builder claimsSetBuilder = new JWTClaimsSet.Builder()
@@ -66,6 +66,7 @@ public class JwtServiceImpl implements JwtService {
     }
 
     // Validate token
+    @Override
     public boolean isTokenValid(String token) {
         try {
             SignedJWT signedJWT = SignedJWT.parse(token);
