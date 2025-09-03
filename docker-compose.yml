@@ -43,6 +43,27 @@ services:
     networks:
       - ms-learning-platform-net
 
+  # Keycloak
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: ms-learning-platform_keycloak
+    ports:
+      - "8889:8080"
+    depends_on:
+      - postgresql
+    restart: always
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=change_me!
+      - DB_VENDOR=postgres
+      - DB_ADDR=postgres:5432
+      - DB_DATABASE=keycloak
+      - DB_USER=admin
+      - DB_PASSWORD=change_me!
+    command: start-dev
+    networks:
+      - ms-learning-platform-net
+
 # -----------------
 networks:
   ms-learning-platform-net:
@@ -55,6 +76,6 @@ volumes:
   rabbitmq_data:
 
 # TODO:
-# [ ] Configure Keycloak container
+# [x] Configure Keycloak container
 # [ ] Configure Zipkin container
 # [ ] Configure Maildev container

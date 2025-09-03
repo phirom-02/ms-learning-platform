@@ -5,19 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement lesson CRUD features">
-      <change afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/gateway-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/auth-service.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/JwksController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/CustomUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/UserRoles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/CustomUserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/JwtServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/utils/RSAKeyUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/auth-service.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2bda98e-1ff6-49da-afed-2f9f48cc3dc9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2bda98e-1ff6-49da-afed-2f9f48cc3dc9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2bda98e-1ff6-49da-afed-2f9f48cc3dc9/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2bda98e-1ff6-49da-afed-2f9f48cc3dc9/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/config-service/src/main/java/com/firom/configserver/ConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/main/java/com/firom/configserver/ConfigServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/course-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/course-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/user-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/user-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/config-service/src/test/java/com/firom/configserver/ConfigServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/test/java/com/firom/configserver/ConfigServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/gateway-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/gateway-service.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +34,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/services/auth-service">
+      <ProjectState />
+    </projectState>
     <projectState path="$PROJECT_DIR$/services/config-service">
       <ProjectState />
     </projectState>
@@ -37,6 +49,9 @@
     <projectState path="$PROJECT_DIR$/services/gateway-service">
       <ProjectState />
     </projectState>
+    <projectState path="$PROJECT_DIR$/services/idp-service">
+      <ProjectState />
+    </projectState>
     <projectState path="$PROJECT_DIR$/services/user-service">
       <ProjectState />
     </projectState>
@@ -47,14 +62,44 @@
         <task path="$PROJECT_DIR$/services/gateway-service">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/services/auth-service">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/services/idp-service">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth-service" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth-service" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="auth-service" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,22 +119,37 @@
   "keyToString": {
     "Docker.docker-compose.yml.keycloak: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build auth-service.executor": "Run",
     "Gradle.Build config-service.executor": "Run",
     "Gradle.Build course-service.executor": "Run",
     "Gradle.Build discovery-service.executor": "Run",
     "Gradle.Build gateway-service.executor": "Run",
+    "Gradle.Build idp-service.executor": "Run",
     "Gradle.Build user-service.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.auth-service [build].executor": "Run",
+    "Gradle.auth-service [clean build].executor": "Run",
+    "Gradle.auth-service [clean].executor": "Run",
     "Gradle.gateway-service [clean build].executor": "Run",
+    "Gradle.idp-service [build].executor": "Run",
+    "Gradle.idp-service [clean build].executor": "Run",
+    "Gradle.idp-service [clean].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AuthServiceApplication.executor": "Run",
     "Spring Boot.ConfigServerApplication.executor": "Run",
     "Spring Boot.ConfigServiceApplication.executor": "Run",
     "Spring Boot.CourseApplication.executor": "Run",
     "Spring Boot.DiscoveryApplication.executor": "Run",
     "Spring Boot.GatewayServiceApplication.executor": "Run",
+    "Spring Boot.IdpServiceApplication.executor": "Run",
     "Spring Boot.UserApplication.executor": "Run",
     "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true",
@@ -99,6 +159,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "preferences.fileTypes",
     "vue.rearranger.settings.migration": "true"
@@ -110,6 +173,9 @@
     ]
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -119,11 +185,11 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
-    <configuration name="gateway-service [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.auth-service [clean]">
+    <configuration name="auth-service [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services/gateway-service" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/auth-service" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--scan" />
         <option name="taskDescriptions">
@@ -131,7 +197,6 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
             <option value="build" />
           </list>
         </option>
@@ -143,22 +208,82 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="config-service.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.configserver.ConfigServiceApplication" />
+    <configuration name="auth-service [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/auth-service" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="idp-service [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/idp-service" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="idp-service [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/idp-service" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="auth-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.authservice.AuthServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CourseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="course-service.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.lms.CourseApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.firom.lms.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="config-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.configserver.ConfigServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -183,6 +308,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="IdpServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="idp-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.idpservice.IdpServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="user-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.lms.UserApplication" />
@@ -196,34 +328,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.keycloak: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="keycloak" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.CourseApplication" />
+        <item itemvalue="Gradle.auth-service [build]" />
+        <item itemvalue="Gradle.auth-service [clean]" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
-        <item itemvalue="Gradle.gateway-service [clean build]" />
-        <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Gradle.idp-service [clean]" />
+        <item itemvalue="Gradle.idp-service [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -246,6 +357,12 @@
       <workItem from="1756445385845" duration="7224000" />
       <workItem from="1756457452489" duration="3987000" />
       <workItem from="1756555462501" duration="2304000" />
+      <workItem from="1756688379675" duration="6003000" />
+      <workItem from="1756698376194" duration="3324000" />
+      <workItem from="1756702135590" duration="314000" />
+      <workItem from="1756709895374" duration="12400000" />
+      <workItem from="1756803762270" duration="12000" />
+      <workItem from="1756860425342" duration="9383000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -268,6 +385,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: implement lesson CRUD features" />
