@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
         name = "user-service",
-        url = "${application.remote.user-url}"
+        url = "${application.remotes.user-url}"
 )
 public interface UserClient {
 

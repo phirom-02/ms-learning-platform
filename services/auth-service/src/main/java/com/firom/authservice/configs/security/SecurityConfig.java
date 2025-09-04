@@ -1,7 +1,10 @@
 package com.firom.authservice.configs.security;
 
 import com.firom.authservice.utils.RSAKeyUtil;
+import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
@@ -93,11 +97,13 @@ public class SecurityConfig {
 
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
-        RegisteredClient appClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient appClient = RegisteredClient
+                .withId(UUID.randomUUID().toString())
                 .clientId(clientId)
                 .clientSecret(passwordEncoder().encode(clientSecret))
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .redirectUri("http://localhost:8081/")
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenTimeToLive(Duration.ofMinutes(5))
                         .build())
@@ -106,6 +112,17 @@ public class SecurityConfig {
                 .build();
 
         return new InMemoryRegisteredClientRepository(appClient);
+    }
+
+    @Bean
+    public JWKSource<SecurityContext> jwkSource() {
+        try {
+            RSAKey rsaKey = RSAKeyUtil.loadFromPem(); // your util should load private+public
+            JWKSet jwkSet = new JWKSet(rsaKey);
+            return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load RSA key", e);
+        }
     }
 
     @Bean
