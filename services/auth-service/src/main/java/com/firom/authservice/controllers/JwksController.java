@@ -26,9 +26,4 @@ public class JwksController {
                 .cacheControl(CacheControl.maxAge(1, TimeUnit.HOURS).cachePublic())
                 .body(jwkSet.toJSONObject());
     }
-
-    @GetMapping("/.well-known/test-jwt")
-    public ResponseEntity<String> testJwt() {
-        return ResponseEntity.ok(jwtService.generateToken("firom", null, 300));
-    }
 }
