@@ -20,12 +20,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<User>> createUser(@RequestBody CreateUserRequest request) {
-        var response = new ApiResponse<>(userService.createUser(request));
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
     @GetMapping
     public ResponseEntity<ApiResponse<List<UserResponse>>> getUsers() {
         var response = new ApiResponse<>(userService.getAllUsers());
@@ -49,12 +43,5 @@ public class UserController {
         userService.deleteUserById(userId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT)
                 .body(null);
-    }
-
-    @GetMapping("/username/{username}")
-    public ResponseEntity<ApiResponse<User>> getUserByEmail(@PathVariable(name = "username") String username) {
-        var response = new ApiResponse<>(userService.getUserByUsername(username));
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(response);
     }
 }

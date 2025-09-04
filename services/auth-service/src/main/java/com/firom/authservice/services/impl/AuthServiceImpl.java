@@ -8,7 +8,7 @@ import com.firom.authservice.dto.response.ApiResponse;
 import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
 import com.firom.authservice.dto.response.UserResponse;
-import com.firom.authservice.entRepo.CustomUserDetails;
+import com.firom.authservice.configs.security.CustomUserDetails;
 import com.firom.authservice.entRepo.RefreshToken;
 import com.firom.authservice.entRepo.User;
 import com.firom.authservice.entRepo.UserRoles;
@@ -177,7 +177,7 @@ public class AuthServiceImpl implements AuthService {
             throw new InvalidTokenException("Invalid or refresh token");
         }
         // Remove token related to the username from db
-        refreshTokenService.deleteTokenByUsername(refreshToken.getUsername());
+        refreshTokenService.deleteTokensByUsername(refreshToken.getUsername());
     }
 
     private Map<String, Object> setTokenClaims(String id, String username2, String email, Set<UserRoles> roles) {

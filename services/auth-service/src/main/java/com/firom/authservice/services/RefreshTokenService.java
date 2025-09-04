@@ -1,19 +1,20 @@
 package com.firom.authservice.services;
 
-import com.firom.authservice.entRepo.CustomUserDetails;
+import com.firom.authservice.configs.security.CustomUserDetails;
 import com.firom.authservice.entRepo.RefreshToken;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface RefreshTokenService {
 
     RefreshToken generateRefreshToken(CustomUserDetails userDetails, Map<String, Object> claims);
 
-    RefreshToken getTokenByUsername(String username);
+    Set<RefreshToken> getTokensByUsername(String username);
 
     RefreshToken getTokenByToken(String token);
 
-    void deleteTokenByUsername(String username);
+    void deleteTokensByUsername(String username);
 
     void deleteByToken(String token);
 

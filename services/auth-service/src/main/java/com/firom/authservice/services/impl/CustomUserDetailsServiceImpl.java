@@ -1,7 +1,7 @@
 package com.firom.authservice.services.impl;
 
 import com.firom.authservice.dto.response.ApiResponse;
-import com.firom.authservice.entRepo.CustomUserDetails;
+import com.firom.authservice.configs.security.CustomUserDetails;
 import com.firom.authservice.entRepo.User;
 import com.firom.authservice.exceptions.BusinessException;
 import com.firom.authservice.remotes.client.UserClient;

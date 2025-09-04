@@ -1,6 +1,6 @@
 package com.firom.authservice.services.impl;
 
-import com.firom.authservice.entRepo.CustomUserDetails;
+import com.firom.authservice.configs.security.CustomUserDetails;
 import com.firom.authservice.entRepo.RefreshToken;
 import com.firom.authservice.services.JwtService;
 import com.firom.authservice.services.RefreshTokenService;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -19,7 +20,6 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
 
     private final JwtService jwtService;
     private final RedisTemplate<String, RefreshToken> redisTemplate;
-    private final RedisTemplate<String, String> stringRedisTemplate;
 
     @Value("#{new Long('${application.jwt.refresh-token-validity}')}")
     private Long refreshTokenValidity;
@@ -57,8 +57,8 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
     }
 
     @Override
-    public RefreshToken getTokenByUsername(String username) {
-        return redisTemplate.opsForValue().get(PREFIX_USERNAME + username);
+    public Set<RefreshToken> getTokensByUsername(String username) {
+        return redisTemplate.opsForSet().members(PREFIX_USERNAME + username);
     }
 
     @Override
@@ -67,12 +67,22 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
     }
 
     @Override
-    public void deleteTokenByUsername(String username) {
-        RefreshToken token = getTokenByUsername(username);
-        if (token != null) {
-            redisTemplate.delete(PREFIX_TOKEN + token);
-            stringRedisTemplate.delete(PREFIX_TOKEN + token.getToken());
+    public void deleteTokensByUsername(String username) {
+        String usernameKey = PREFIX_USERNAME + username;
+
+        // Retrieve all tokens associated with the username
+        var tokens = getTokensByUsername(username);
+        if (tokens != null) {
+            for (Object obj : tokens) {
+                if (obj instanceof RefreshToken refreshToken) {
+                    String tokenKey = PREFIX_TOKEN + refreshToken.getToken();
+                    redisTemplate.delete(tokenKey);
+                }
+            }
         }
+
+        // Delete the username-to-tokens set
+        redisTemplate.delete(usernameKey);
     }
 
     @Override

@@ -1,5 +1,6 @@
-package com.firom.authservice.entRepo;
+package com.firom.authservice.configs.security;
 
+import com.firom.authservice.entRepo.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

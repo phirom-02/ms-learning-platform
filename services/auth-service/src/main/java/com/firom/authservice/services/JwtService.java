@@ -20,5 +20,4 @@ public interface JwtService {
 
     String getSubject(String token);
 
-    RSAKey getPublicJwk();
 }

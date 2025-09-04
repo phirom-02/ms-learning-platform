@@ -106,8 +106,4 @@ public class JwtServiceImpl implements JwtService {
         return extractClaim(token, JWTClaimsSet::getSubject);
     }
 
-    @Override
-    public RSAKey getPublicJwk() {
-        return rsaKey.toPublicJWK();
-    }
 }
