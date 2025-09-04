@@ -9,11 +9,14 @@ import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
 import com.firom.authservice.dto.response.UserResponse;
 import com.firom.authservice.entRepo.CustomUserDetails;
+import com.firom.authservice.entRepo.RefreshToken;
 import com.firom.authservice.entRepo.User;
+import com.firom.authservice.entRepo.UserRoles;
 import com.firom.authservice.exceptions.InvalidTokenException;
 import com.firom.authservice.remotes.client.UserClient;
 import com.firom.authservice.services.AuthService;
 import com.firom.authservice.services.JwtService;
+import com.firom.authservice.services.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +38,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthMapper authMapper;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final RefreshTokenService refreshTokenService;
     private final PasswordEncoder passwordEncoder;
 
     @Value("#{new Long('${application.jwt.access-token-validity}')}")
@@ -72,22 +77,24 @@ public class AuthServiceImpl implements AuthService {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         UserResponse userResponse = authMapper.usertoUserResponse(userDetails.getUser());
 
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", userResponse.getId());
-        claims.put("username", userResponse.getUsername());
-        claims.put("email", userResponse.getEmail());
-        claims.put("roles", userResponse.getRoles());
+        Map<String, Object> claims = setTokenClaims(
+                userResponse.getId(),
+                userResponse.getUsername(),
+                userResponse.getEmail(),
+                userResponse.getRoles(),
+                userDetails.getUser()
+        );
 
         // Generate new access token
         String accessToken = jwtService.generateToken(userDetails.getUsername(), claims, accessTokenValidity);
         // Generate new refresh token
-        String refreshToken = jwtService.generateToken(userDetails.getUsername(), claims, refreshTokenValidity);
+        RefreshToken refreshToken = refreshTokenService.generateRefreshToken(userDetails, claims);
 
         return AuthenticationResponse.builder()
                 .accessToken(accessToken)
-                .refreshToken(refreshToken)
+                .refreshToken(refreshToken.getToken())
                 .expiresIn(accessTokenValidity)
-                .refreshToken(refreshToken)
+                .refreshExpiresIn(refreshToken.getRefreshTokenExpiresIn())
                 .userInfo(userResponse)
                 .build();
     }
@@ -110,21 +117,22 @@ public class AuthServiceImpl implements AuthService {
         if (user == null) {
             throw new InvalidTokenException("Invalid refresh token");
         }
-
         UserResponse userResponse = authMapper.usertoUserResponse(user);
+        CustomUserDetails userDetails = new CustomUserDetails(user);
 
         // Prepare claims for new tokens
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", user.getId());
-        claims.put("username", user.getUsername());
-        claims.put("email", user.getEmail());
-        claims.put("roles", user.getRoles());
+        Map<String, Object> claims = setTokenClaims(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getRoles(),
+                user
+        );
 
         // Generate new access token
         String accessToken = jwtService.generateToken(username, claims, accessTokenValidity);
-
         // Generate new refresh token (rotation)
-        String refreshToken = jwtService.generateToken(username, claims, refreshTokenValidity);
+        RefreshToken refreshToken = refreshTokenService.generateRefreshToken(userDetails, claims);
 
         // Invalidate old refresh token by adding it to blacklist
 
@@ -134,11 +142,20 @@ public class AuthServiceImpl implements AuthService {
 
         return AuthenticationResponse.builder()
                 .accessToken(accessToken)
-                .refreshToken(refreshToken)
+                .refreshToken(refreshToken.getToken())
                 .expiresIn(accessTokenValidity)
-                .refreshToken(refreshToken)
+                .refreshExpiresIn(refreshToken.getRefreshTokenExpiresIn())
                 .userInfo(userResponse)
                 .build();
+    }
+
+    private Map<String, Object> setTokenClaims(String id, String username2, String email, Set<UserRoles> roles, User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", id);
+        claims.put("username", username2);
+        claims.put("email", email);
+        claims.put("roles", roles);
+        return claims;
     }
 }
 

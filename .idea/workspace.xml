@@ -4,27 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement authorization server in auth-service module">
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/dto/request/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/dto/response/AuthenticationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/dto/response/UserResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/exceptions/InvalidTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/exceptions/UserNotFoundException.java" afterDir="false" />
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement token rotation">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0ff658b-e4cf-42c7-b9a9-2f2a577c5b9f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d0ff658b-e4cf-42c7-b9a9-2f2a577c5b9f.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/dto/mapper/AuthMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/dto/mapper/AuthMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/entRepo/CustomUserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/remotes/client/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/remotes/client/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/AuthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/AuthServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/CustomUserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/CustomUserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/JwtServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/JwtServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/entRepo/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/entRepo/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,65 +108,68 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker-compose.yml.keycloak: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.Build auth-service.executor": "Run",
-    "Gradle.Build config-service.executor": "Run",
-    "Gradle.Build course-service.executor": "Run",
-    "Gradle.Build discovery-service.executor": "Run",
-    "Gradle.Build gateway-service.executor": "Run",
-    "Gradle.Build idp-service.executor": "Run",
-    "Gradle.Build user-service.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.auth-service [build].executor": "Run",
-    "Gradle.auth-service [clean build].executor": "Run",
-    "Gradle.auth-service [clean].executor": "Run",
-    "Gradle.gateway-service [clean build].executor": "Run",
-    "Gradle.idp-service [build].executor": "Run",
-    "Gradle.idp-service [clean build].executor": "Run",
-    "Gradle.idp-service [clean].executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.AuthServiceApplication.executor": "Run",
-    "Spring Boot.ConfigServerApplication.executor": "Run",
-    "Spring Boot.ConfigServiceApplication.executor": "Run",
-    "Spring Boot.CourseApplication.executor": "Run",
-    "Spring Boot.DiscoveryApplication.executor": "Run",
-    "Spring Boot.GatewayServiceApplication.executor": "Run",
-    "Spring Boot.IdpServiceApplication.executor": "Run",
-    "Spring Boot.UserApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/phirom/Programming/Assignments/ms-learning-platform/services/gateway-service/build.gradle",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.redis-commander: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.Build auth-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build config-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build course-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build discovery-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build idp-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build user-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.auth-service [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.auth-service [clean build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.auth-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.gateway-service [clean build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.idp-service [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.idp-service [clean build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.idp-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AuthServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CourseApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DiscoveryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.IdpServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/phirom/Programming/Assignments/ms-learning-platform/services/gateway-service/build.gradle&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql",
-      "mongo"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;,
+      &quot;mongo&quot;,
+      &quot;redis&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -201,29 +191,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
-    <configuration name="auth-service [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services/auth-service" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--scan" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="auth-service [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -308,13 +276,26 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yml.redis-commander: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="redis-commander" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Spring Boot.UserServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.redis-commander: Compose Deployment" />
         <item itemvalue="Gradle.auth-service [clean build]" />
-        <item itemvalue="Gradle.auth-service [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -344,6 +325,8 @@
       <workItem from="1756803762270" duration="12000" />
       <workItem from="1756860425342" duration="13264000" />
       <workItem from="1756881506931" duration="7389000" />
+      <workItem from="1756909272913" duration="4633000" />
+      <workItem from="1756947464940" duration="342000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -369,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756870856797</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: implement token rotation">
+      <option name="closed" value="true" />
+      <created>1756910110910</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1756910110910</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,27 +380,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: implement lesson CRUD features" />
     <MESSAGE value="feat: implement authorization server in auth-service module" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement authorization server in auth-service module" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/AuthServiceImpl.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/AuthServiceImpl.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/utils/RSAKeyUtil.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: implement token rotation" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement token rotation" />
   </component>
 </project>
