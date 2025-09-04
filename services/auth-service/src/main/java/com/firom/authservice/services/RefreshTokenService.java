@@ -10,4 +10,12 @@ public interface RefreshTokenService {
     RefreshToken generateRefreshToken(CustomUserDetails userDetails, Map<String, Object> claims);
 
     RefreshToken getTokenByUsername(String username);
+
+    RefreshToken getTokenByToken(String token);
+
+    void deleteTokenByUsername(String username);
+
+    void deleteByToken(String token);
+
+    boolean isTokenExpired(RefreshToken refreshToken);
 }

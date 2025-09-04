@@ -56,7 +56,49 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
         return refreshToken;
     }
 
+    @Override
     public RefreshToken getTokenByUsername(String username) {
         return redisTemplate.opsForValue().get(PREFIX_USERNAME + username);
+    }
+
+    @Override
+    public RefreshToken getTokenByToken(String token) {
+        return redisTemplate.opsForValue().get(PREFIX_TOKEN + token);
+    }
+
+    @Override
+    public void deleteTokenByUsername(String username) {
+        RefreshToken token = getTokenByUsername(username);
+        if (token != null) {
+            redisTemplate.delete(PREFIX_TOKEN + token);
+            stringRedisTemplate.delete(PREFIX_TOKEN + token.getToken());
+        }
+    }
+
+    @Override
+    public void deleteByToken(String token) {
+        String tokenKey = PREFIX_TOKEN + token;
+
+        RefreshToken refreshToken = redisTemplate.opsForValue().get(tokenKey);
+        if (refreshToken != null) {
+            String usernameKey = PREFIX_USERNAME + refreshToken.getUsername();
+
+            // Delete the token → object mapping
+            redisTemplate.delete(tokenKey);
+
+            // Remove this token from the user's set of tokens
+            redisTemplate.opsForSet().remove(usernameKey, refreshToken);
+
+            // delete the username key entirely if no more tokens exist
+            Long size = redisTemplate.opsForSet().size(usernameKey);
+            if (size != null && size == 0) {
+                redisTemplate.delete(usernameKey);
+            }
+        }
+    }
+
+    @Override
+    public boolean isTokenExpired(RefreshToken token) {
+        return token.getRefreshTokenExpiresAt() < new Date().getTime();
     }
 }

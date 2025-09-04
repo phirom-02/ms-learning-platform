@@ -19,6 +19,12 @@ public class AuthController {
 
     private final AuthService authService;
 
+    /**
+     * Signup endpoint
+     *
+     * @param request
+     * @return
+     */
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<SignUpResponse>> signup(@RequestBody @Valid SignUpRequest request) {
         ApiResponse<SignUpResponse> response = new ApiResponse<>(authService.signUp(request));
@@ -26,6 +32,12 @@ public class AuthController {
                 .body(response);
     }
 
+    /**
+     * Login endpoint
+     *
+     * @param request
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AuthenticationResponse>> login(@RequestBody @Valid LoginRequest request) {
         ApiResponse<AuthenticationResponse> response = new ApiResponse<>(authService.login(request));
@@ -33,9 +45,43 @@ public class AuthController {
                 .body(response);
     }
 
+    /**
+     * Refresh(renew) token endpoint
+     *
+     * @param token
+     * @return
+     */
     @PostMapping("/refresh")
     public ResponseEntity<ApiResponse<AuthenticationResponse>> refresh(@RequestHeader("X-Refresh-Token") String token) {
         ApiResponse<AuthenticationResponse> response = new ApiResponse<>(authService.refresh(token));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
+
+    /**
+     * Logout endpoint
+     *
+     * @param token
+     * @return
+     */
+    @PostMapping("/logout")
+    public ResponseEntity<ApiResponse<Void>> logout(@RequestHeader("X-Refresh-Token") String token) {
+        authService.logout(token);
+        ApiResponse<Void> response = new ApiResponse<>(null);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
+
+    /**
+     * Logout all devices endpoint
+     *
+     * @param token
+     * @return
+     */
+    @PostMapping("/logout-all-devices")
+    public ResponseEntity<ApiResponse<Void>> logoutAllDevices(@RequestHeader("X-Refresh-Token") String token) {
+        authService.logoutAllDevices(token);
+        ApiResponse<Void> response = new ApiResponse<>(null);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
     }

@@ -12,4 +12,8 @@ public interface AuthService {
     AuthenticationResponse login(LoginRequest request);
 
     AuthenticationResponse refresh(String token);
+
+    void logout(String token);
+
+    void logoutAllDevices(String token);
 }

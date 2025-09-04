@@ -1,6 +1,7 @@
 package com.firom.authservice.configs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.firom.authservice.entRepo.RefreshToken;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -12,14 +13,14 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig {
 
     @Bean
-    public <T> RedisTemplate<String, T> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, T> template = new RedisTemplate<>();
+    public RedisTemplate<String, RefreshToken> refreshTokenRedisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<String, RefreshToken> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
 
-        // Use Jackson for object serialization
-        ObjectMapper mapper = new ObjectMapper();
-        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(mapper, Object.class);
-        mapper.findAndRegisterModules();
+        // Use Jackson JSON serializer specifically for RefreshToken class
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules(); // handles Java 8 time, UUID, etc.
+        Jackson2JsonRedisSerializer<RefreshToken> serializer = new Jackson2JsonRedisSerializer<>(objectMapper, RefreshToken.class);
 
         template.setDefaultSerializer(serializer);
         template.setKeySerializer(new StringRedisSerializer());

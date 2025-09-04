@@ -12,7 +12,9 @@ import com.firom.authservice.entRepo.CustomUserDetails;
 import com.firom.authservice.entRepo.RefreshToken;
 import com.firom.authservice.entRepo.User;
 import com.firom.authservice.entRepo.UserRoles;
+import com.firom.authservice.exceptions.BusinessException;
 import com.firom.authservice.exceptions.InvalidTokenException;
+import com.firom.authservice.exceptions.UserNotFoundException;
 import com.firom.authservice.remotes.client.UserClient;
 import com.firom.authservice.services.AuthService;
 import com.firom.authservice.services.JwtService;
@@ -28,6 +30,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -44,9 +47,6 @@ public class AuthServiceImpl implements AuthService {
     @Value("#{new Long('${application.jwt.access-token-validity}')}")
     private Long accessTokenValidity;
 
-    @Value("#{new Long('${application.jwt.refresh-token-validity}')}")
-    private Long refreshTokenValidity;
-
     @Override
     public SignUpResponse signUp(SignUpRequest request) {
         // TODO: check if password matches
@@ -59,8 +59,13 @@ public class AuthServiceImpl implements AuthService {
         // Encode password
         createUserRequest.setPassword(passwordEncoder.encode(request.getPassword()));
         // Create a new user by requesting to user service
-        ResponseEntity<ApiResponse<User>> response = userClient.createUser(createUserRequest);
-        User user = response.getBody().getData();
+        User user;
+        try {
+            ResponseEntity<ApiResponse<User>> response = userClient.createUser(createUserRequest);
+            user = Objects.requireNonNull(response.getBody()).getData();
+        } catch (Exception e) {
+            throw new BusinessException("Cannot register user");
+        }
         // Map user to SignUpResponse
         return authMapper.userToSignUpResponse(user);
     }
@@ -81,8 +86,7 @@ public class AuthServiceImpl implements AuthService {
                 userResponse.getId(),
                 userResponse.getUsername(),
                 userResponse.getEmail(),
-                userResponse.getRoles(),
-                userDetails.getUser()
+                userResponse.getRoles()
         );
 
         // Generate new access token
@@ -101,21 +105,31 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthenticationResponse refresh(String token) {
-        // Validate token
-        if (!jwtService.isTokenValid(token)) {
+        // Check if given token exist in db(cache)
+        RefreshToken refreshToken = refreshTokenService.getTokenByToken(token);
+        if (refreshToken == null) {
             throw new InvalidTokenException("Invalid or expired refresh token");
         }
-        // TODO: Check if token blacklisted
-
+        // Validate token
+        if (!jwtService.isTokenValid(token) && refreshTokenService.isTokenExpired(refreshToken)) {
+            // Remove token from db if expired
+            refreshTokenService.deleteByToken(token);
+            throw new InvalidTokenException("Invalid or expired refresh token");
+        }
 
         // Extract username from token
         String username = jwtService.getSubject(token);
 
         // Get user information
-        ResponseEntity<ApiResponse<User>> response = userClient.getUserByUsername(username);
-        User user = response.getBody().getData();
+        User user;
+        try {
+            ResponseEntity<ApiResponse<User>> response = userClient.getUserByUsername(username);
+            user = Objects.requireNonNull(Objects.requireNonNull(response.getBody())).getData();
+        } catch (Exception e) {
+            throw new BusinessException(e.getMessage());
+        }
         if (user == null) {
-            throw new InvalidTokenException("Invalid refresh token");
+            throw new UserNotFoundException("No user found with username: " + username);
         }
         UserResponse userResponse = authMapper.usertoUserResponse(user);
         CustomUserDetails userDetails = new CustomUserDetails(user);
@@ -125,31 +139,48 @@ public class AuthServiceImpl implements AuthService {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getRoles(),
-                user
+                user.getRoles()
         );
 
         // Generate new access token
         String accessToken = jwtService.generateToken(username, claims, accessTokenValidity);
         // Generate new refresh token (rotation)
-        RefreshToken refreshToken = refreshTokenService.generateRefreshToken(userDetails, claims);
-
-        // Invalidate old refresh token by adding it to blacklist
-
-        // Remove old refresh token from storage
-
-        // Store new refresh token
+        RefreshToken newRefreshToken = refreshTokenService.generateRefreshToken(userDetails, claims);
+        // Remove given refresh token from storage to prevent token reuse
+        refreshTokenService.deleteByToken(token);
 
         return AuthenticationResponse.builder()
                 .accessToken(accessToken)
-                .refreshToken(refreshToken.getToken())
+                .refreshToken(newRefreshToken.getToken())
                 .expiresIn(accessTokenValidity)
-                .refreshExpiresIn(refreshToken.getRefreshTokenExpiresIn())
+                .refreshExpiresIn(newRefreshToken.getRefreshTokenExpiresIn())
                 .userInfo(userResponse)
                 .build();
     }
 
-    private Map<String, Object> setTokenClaims(String id, String username2, String email, Set<UserRoles> roles, User user) {
+    @Override
+    public void logout(String token) {
+        // Check if given token exist in db(cache)
+        RefreshToken refreshToken = refreshTokenService.getTokenByToken(token);
+        if (refreshToken == null) {
+            throw new InvalidTokenException("Invalid or refresh token");
+        }
+        // Remove token from db
+        refreshTokenService.deleteByToken(token);
+    }
+
+    @Override
+    public void logoutAllDevices(String token) {
+        // Check if given token exist in db(cache)
+        RefreshToken refreshToken = refreshTokenService.getTokenByToken(token);
+        if (refreshToken == null) {
+            throw new InvalidTokenException("Invalid or refresh token");
+        }
+        // Remove token related to the username from db
+        refreshTokenService.deleteTokenByUsername(refreshToken.getUsername());
+    }
+
+    private Map<String, Object> setTokenClaims(String id, String username2, String email, Set<UserRoles> roles) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", id);
         claims.put("username", username2);
@@ -158,6 +189,4 @@ public class AuthServiceImpl implements AuthService {
         return claims;
     }
 }
-
-// TODO: Persist token into cache db and implement refresh token CRUD
 
