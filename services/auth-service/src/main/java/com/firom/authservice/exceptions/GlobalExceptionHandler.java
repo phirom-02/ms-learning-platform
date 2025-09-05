@@ -1,6 +1,9 @@
 package com.firom.authservice.exceptions;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firom.authservice.dto.response.ErrorResponse;
+import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -41,11 +44,11 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ErrorResponse> handleBusinessException(UserNotFoundException e) {
+    public ResponseEntity<ErrorResponse> handleBusinessException(BusinessException e) {
         Map<String, Object> error = new HashMap<>();
         error.put("message", e.getMessage());
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(error));
     }
 
@@ -54,7 +57,26 @@ public class GlobalExceptionHandler {
         Map<String, Object> error = new HashMap<>();
         error.put("message", e.getMessage());
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new ErrorResponse(error));
+    }
+
+    @ExceptionHandler(FeignException.class)
+    public ResponseEntity<ErrorResponse> handleFeignException(FeignException e) {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> error = new HashMap<>();
+        var status = e.status();
+
+        try {
+            String body = e.contentUTF8();
+            JsonNode root = mapper.readTree(body);
+            String message = root.path("error").path("message").asText();
+            error.put("message", message);
+        } catch (Exception ex) {
+            error.put("message", "Downstream service error");
+        }
+
+
+        return ResponseEntity.status(status).body(new ErrorResponse(error));
     }
 }

@@ -27,6 +27,8 @@ public class AuthController {
      */
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<SignUpResponse>> signup(@RequestBody @Valid SignUpRequest request) {
+        // TODO: Implement strict password validation
+        // TODO: send email verification message to notification-service
         ApiResponse<SignUpResponse> response = new ApiResponse<>(authService.signUp(request));
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
@@ -85,4 +87,8 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
     }
+
+    // TODO: Issue password reset endpoint
+    // TODO: Change password endpoint
+    // TODO: Enable/Disable account endpoint
 }

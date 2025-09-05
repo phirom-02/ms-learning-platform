@@ -1,5 +1,7 @@
 package com.firom.authservice.dto.request;
 
+import com.firom.authservice.validations.PasswordMatches;
+import com.firom.authservice.validations.StrongPassword;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@PasswordMatches
 public class SignUpRequest {
 
     @NotEmpty(message = "First name is required")
@@ -27,6 +30,7 @@ public class SignUpRequest {
     @NotEmpty(message = "Email is required")
     private String email;
 
+    @StrongPassword
     @NotEmpty(message = "Password is required")
     private String password;
 

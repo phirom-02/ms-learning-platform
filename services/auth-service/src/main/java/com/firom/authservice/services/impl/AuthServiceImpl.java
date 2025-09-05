@@ -1,5 +1,6 @@
 package com.firom.authservice.services.impl;
 
+import com.firom.authservice.configs.security.CustomUserDetails;
 import com.firom.authservice.dto.mapper.AuthMapper;
 import com.firom.authservice.dto.request.CreateUserRequest;
 import com.firom.authservice.dto.request.LoginRequest;
@@ -8,11 +9,9 @@ import com.firom.authservice.dto.response.ApiResponse;
 import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
 import com.firom.authservice.dto.response.UserResponse;
-import com.firom.authservice.configs.security.CustomUserDetails;
 import com.firom.authservice.entRepo.RefreshToken;
 import com.firom.authservice.entRepo.User;
 import com.firom.authservice.entRepo.UserRoles;
-import com.firom.authservice.exceptions.BusinessException;
 import com.firom.authservice.exceptions.InvalidTokenException;
 import com.firom.authservice.exceptions.UserNotFoundException;
 import com.firom.authservice.remotes.client.UserClient;
@@ -60,13 +59,8 @@ public class AuthServiceImpl implements AuthService {
         createUserRequest.setPassword(passwordEncoder.encode(request.getPassword()));
         // Create a new user by requesting to user service
         User user;
-        try {
-            ResponseEntity<ApiResponse<User>> response = userClient.createUser(createUserRequest);
-            user = Objects.requireNonNull(response.getBody()).getData();
-        } catch (Exception e) {
-            throw new BusinessException("Cannot register user");
-        }
-        // Map user to SignUpResponse
+        ResponseEntity<ApiResponse<User>> response = userClient.createUser(createUserRequest);
+        user = Objects.requireNonNull(response.getBody()).getData();
         return authMapper.userToSignUpResponse(user);
     }
 
@@ -122,12 +116,8 @@ public class AuthServiceImpl implements AuthService {
 
         // Get user information
         User user;
-        try {
-            ResponseEntity<ApiResponse<User>> response = userClient.getUserByUsername(username);
-            user = Objects.requireNonNull(Objects.requireNonNull(response.getBody())).getData();
-        } catch (Exception e) {
-            throw new BusinessException(e.getMessage());
-        }
+        ResponseEntity<ApiResponse<User>> response = userClient.getUserByUsername(username);
+        user = Objects.requireNonNull(Objects.requireNonNull(response.getBody())).getData();
         if (user == null) {
             throw new UserNotFoundException("No user found with username: " + username);
         }
