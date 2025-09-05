@@ -21,7 +21,11 @@ public interface UserService {
 
     void deleteUserById(String userId);
 
-    User getUserByUsername(String username);
+    User getUserEntityByUsername(String username);
+
+    User getUserEntityByEmail(String email);
 
     User updatePassword(String userId, UpdatePasswordRequest request);
+
+    User setUserEnableStatus(String userId, boolean value);
 }

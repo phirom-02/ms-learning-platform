@@ -70,7 +70,8 @@ public class SecurityConfig {
 
         http.securityMatcher(
                         "/api/v1/auth/oauth2/**",
-                        "/api/v1/auth/password-reset/**"
+                        "/api/v1/auth/password-reset/**",
+                        "/api/v1/auth/verify-email"
                 ).csrf(AbstractHttpConfigurer::disable)
                 .headers(AbstractHttpConfigurer::disable)
                 .with(authorizationServerConfigurer, Customizer.withDefaults())
@@ -80,6 +81,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/v1/auth/verify-email/request").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2

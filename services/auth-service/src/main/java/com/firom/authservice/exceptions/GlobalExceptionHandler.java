@@ -106,4 +106,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(error));
     }
+
+    @ExceptionHandler(AccountStateException.class)
+    public ResponseEntity<ErrorResponse> handleAccountStateException(AccountStateException e) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("message", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(error));
+    }
 }

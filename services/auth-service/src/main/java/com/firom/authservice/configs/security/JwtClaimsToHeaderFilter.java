@@ -29,7 +29,9 @@ public class JwtClaimsToHeaderFilter extends OncePerRequestFilter {
 
         if (authentication instanceof JwtAuthenticationToken jwtAuthToken) {
             String token = jwtAuthToken.getToken().getTokenValue();
+
             String userId = jwtService.extractClaim(token, "userId", String.class);
+            String email = jwtService.extractClaim(token, "email", String.class);
             String username = jwtService.getSubject(token);
             List<String> roles = ((List<String>) jwtService.extractClaim(token, "roles", List.class))
                     .stream()
@@ -37,11 +39,10 @@ public class JwtClaimsToHeaderFilter extends OncePerRequestFilter {
                     .toList();
             request.setAttribute("roles", String.join(",", roles));
 
-            if (userId != null) {
-                request.setAttribute("userId", userId);
-                request.setAttribute("username", username);
-                request.setAttribute("roles", String.join(",", roles));
-            }
+            request.setAttribute("userId", userId);
+            request.setAttribute("username", username);
+            request.setAttribute("email", email);
+            request.setAttribute("roles", String.join(",", roles));
         }
 
         filterChain.doFilter(request, response);

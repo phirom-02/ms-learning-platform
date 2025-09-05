@@ -23,6 +23,15 @@ public interface UserClient {
     @GetMapping("/username/{username}")
     ResponseEntity<ApiResponse<User>> getUserByUsername(@PathVariable("username") String username);
 
+    @GetMapping("/email/{email}")
+    ResponseEntity<ApiResponse<User>> getUserByEmail(@PathVariable("email") String email);
+
     @PatchMapping("/{user-id}/change-password")
     ResponseEntity<ApiResponse<Void>> updatePassword(@PathVariable("user-id") String userId, @RequestBody ChangeUserPasswordRequest request);
+
+    @PatchMapping("/{user-id}/enable")
+    ResponseEntity<ApiResponse<Void>> enableUser(@PathVariable("user-id") String userId);
+
+    @PatchMapping("/{user-id}/disable")
+    ResponseEntity<ApiResponse<Void>> disableUser(@PathVariable("user-id") String userId);
 }

@@ -68,15 +68,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUsername(String username) {
+    public User getUserEntityByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("No user found with username: " + username));
+    }
+
+    @Override
+    public User getUserEntityByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("No user found with email: " + email));
     }
 
     @Override
     public User updatePassword(String userId, UpdatePasswordRequest request) {
         var user = getUserEntityById(userId);
         user.setPassword(request.getPassword());
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User setUserEnableStatus(String userId, boolean value) {
+        var user = getUserEntityById(userId);
+        user.setEnabled(value);
         return userRepository.save(user);
     }
 }

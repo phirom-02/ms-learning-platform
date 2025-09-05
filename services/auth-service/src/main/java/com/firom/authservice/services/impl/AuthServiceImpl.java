@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -74,13 +75,15 @@ public class AuthServiceImpl implements AuthService {
             );
         } catch (BadCredentialsException e) {
             throw new LoginException("Invalid username or password");
+        } catch (DisabledException e) {
+            throw new AccountStateException("Account is disabled");
         }
+
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         UserResponse userResponse = authMapper.usertoUserResponse(userDetails.getUser());
 
         Map<String, Object> claims = setTokenClaims(
                 userResponse.getId(),
-                userResponse.getUsername(),
                 userResponse.getEmail(),
                 userResponse.getRoles()
         );
@@ -129,7 +132,6 @@ public class AuthServiceImpl implements AuthService {
         // Prepare claims for new tokens
         Map<String, Object> claims = setTokenClaims(
                 user.getId(),
-                user.getUsername(),
                 user.getEmail(),
                 user.getRoles()
         );
@@ -194,10 +196,32 @@ public class AuthServiceImpl implements AuthService {
         userClient.updatePassword(userId, changeUserPasswordRequest);
     }
 
-    private Map<String, Object> setTokenClaims(String id, String username2, String email, Set<UserRoles> roles) {
+    @Override
+    public void verifyEmail(String userId, String email) {
+        // Check if user exists in db
+        ResponseEntity<ApiResponse<User>> response = userClient.getUserById(userId);
+        User user = Objects.requireNonNull(response.getBody()).getData();
+        // Compare if emails matches
+        if (!user.getEmail().equals(email)) {
+            throw new EmailVerificationException("Invalid email address");
+        }
+        // Enable user after email verification
+        userClient.enableUser(userId);
+    }
+
+    @Override
+    public String requestVerifyEmail(VerifyEmailRequest request) {
+        ResponseEntity<ApiResponse<User>> response = userClient.getUserByEmail(request.getEmail());
+        User user = Objects.requireNonNull(response.getBody()).getData();
+        Map<String, Object> claims = setTokenClaims(user.getId(), user.getEmail(), user.getRoles());
+        String token = jwtService.generateToken(user.getUsername(), claims, accessTokenValidity);
+        // TODO: send message to notification service
+        return token;
+    }
+
+    private Map<String, Object> setTokenClaims(String id, String email, Set<UserRoles> roles) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", id);
-        claims.put("username", username2);
         claims.put("email", email);
         claims.put("roles", roles);
         return claims;

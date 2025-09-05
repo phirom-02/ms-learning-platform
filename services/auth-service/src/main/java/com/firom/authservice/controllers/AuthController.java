@@ -3,6 +3,7 @@ package com.firom.authservice.controllers;
 import com.firom.authservice.dto.request.ChangePasswordRequest;
 import com.firom.authservice.dto.request.LoginRequest;
 import com.firom.authservice.dto.request.SignUpRequest;
+import com.firom.authservice.dto.request.VerifyEmailRequest;
 import com.firom.authservice.dto.response.ApiResponse;
 import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
@@ -28,9 +29,31 @@ public class AuthController {
      */
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<SignUpResponse>> signup(@RequestBody @Valid SignUpRequest request) {
-        // TODO: Implement strict password validation
         // TODO: send email verification message to notification-service
         ApiResponse<SignUpResponse> response = new ApiResponse<>(authService.signUp(request));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
+
+    /**
+     * Verify user email
+     *
+     * @param email
+     * @param userId
+     * @return
+     */
+    @GetMapping("/verify-email")
+    public ResponseEntity<ApiResponse<Void>> verifyEmail(@RequestAttribute String email, @RequestAttribute String userId) {
+        authService.verifyEmail(userId, email);
+        ApiResponse<Void> response = new ApiResponse<>(null);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
+
+    @PostMapping("/verify-email/request")
+    public ResponseEntity<ApiResponse<String>> verifyEmail(@RequestBody @Valid VerifyEmailRequest request) {
+        String token = authService.requestVerifyEmail(request);
+        ApiResponse<String> response = new ApiResponse<>(token);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
     }
@@ -91,6 +114,12 @@ public class AuthController {
 
     // TODO: Issue password reset endpoint
     // TODO: Instead of returning token send token to notification-service and let notification-service send to user email
+
+    /**
+     * Request password reset endpoint
+     *
+     * @return
+     */
     @PostMapping("/password-reset/request")
     public ResponseEntity<ApiResponse<String>> requestPasswordReset() {
         ApiResponse<String> token = new ApiResponse<>("");
@@ -100,6 +129,14 @@ public class AuthController {
 
     // TODO: Change password endpoint
     // TODO: Decide should invalidate all refresh token(logout all devices)
+
+    /**
+     * Update password endpoint
+     *
+     * @param request
+     * @param userId
+     * @return
+     */
     @PostMapping("/password-reset/change-password")
     public ResponseEntity<ApiResponse<Void>> changePassword(@RequestBody @Valid ChangePasswordRequest request, @RequestAttribute("userId") String userId) {
         authService.changePassword(userId, request);

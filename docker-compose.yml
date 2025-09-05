@@ -69,6 +69,15 @@ services:
     networks:
       ms-learning-platform-net:
 
+  mail-dev:
+    container_name: ms-mail-dev
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+    networks:
+      - ms-learning-platform-net
+
 # -----------------
 networks:
   ms-learning-platform-net:
