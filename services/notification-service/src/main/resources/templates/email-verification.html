@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Your Email</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #333;
+        }
+
+        .content {
+            color: #555;
+            font-size: 16px;
+        }
+
+        .verify-button {
+            background-color: #4CAF50;
+            padding: 14px 24px;
+            margin: 8px 0;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+        }
+
+        .verify-link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Email Verification</h1>
+    </div>
+    <div class="content">
+        <p>Hello, <b>{firstName} {lastName}</b></p>
+        <p>Thank you for registering!<br/> Please verify your email address by clicking the button below:</p>
+
+        <button class="verify-button">
+            <a class="verify-link" href="{{verificationLink}}">Verify Email</a>
+        </button>
+
+        <p>If you didn’t sign up for this account, you can safely ignore this email.</p>
+
+        <p>Thanks, Firom</p>
+    </div>
+    <div class="footer">
+        &copy; {{year}} Your Firom. All rights reserved.
+    </div>
+</div>
+</body>
+</html>

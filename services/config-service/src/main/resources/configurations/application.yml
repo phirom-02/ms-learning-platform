@@ -16,6 +16,11 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8081/api/v1/auth/oauth2/.well-known/jwks.json
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: change_me!
 
 application:
   remotes:
