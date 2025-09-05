@@ -1,5 +1,6 @@
 package com.firom.authservice.controllers;
 
+import com.firom.authservice.dto.request.ChangePasswordRequest;
 import com.firom.authservice.dto.request.LoginRequest;
 import com.firom.authservice.dto.request.SignUpRequest;
 import com.firom.authservice.dto.response.ApiResponse;
@@ -89,6 +90,21 @@ public class AuthController {
     }
 
     // TODO: Issue password reset endpoint
+    // TODO: Instead of returning token send token to notification-service and let notification-service send to user email
+    @PostMapping("/password-reset/request")
+    public ResponseEntity<ApiResponse<String>> requestPasswordReset() {
+        ApiResponse<String> token = new ApiResponse<>("");
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(token);
+    }
+
     // TODO: Change password endpoint
-    // TODO: Enable/Disable account endpoint
+    // TODO: Decide should invalidate all refresh token(logout all devices)
+    @PostMapping("/password-reset/change-password")
+    public ResponseEntity<ApiResponse<Void>> changePassword(@RequestBody @Valid ChangePasswordRequest request, @RequestAttribute("userId") String userId) {
+        authService.changePassword(userId, request);
+        ApiResponse<Void> response = new ApiResponse<>(null);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
 }

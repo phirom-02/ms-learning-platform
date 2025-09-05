@@ -1,5 +1,6 @@
 package com.firom.authservice.services;
 
+import com.firom.authservice.dto.request.ChangePasswordRequest;
 import com.firom.authservice.dto.request.LoginRequest;
 import com.firom.authservice.dto.request.SignUpRequest;
 import com.firom.authservice.dto.response.AuthenticationResponse;
@@ -16,4 +17,6 @@ public interface AuthService {
     void logout(String token);
 
     void logoutAllDevices(String token);
+
+    void changePassword(String userId, ChangePasswordRequest request);
 }

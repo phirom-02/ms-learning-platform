@@ -2,6 +2,7 @@ package com.firom.lms.services.impl;
 
 import com.firom.lms.dto.mapper.UserMapper;
 import com.firom.lms.dto.request.CreateUserRequest;
+import com.firom.lms.dto.request.UpdatePasswordRequest;
 import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
@@ -43,27 +44,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getUserById(String userId) {
+        return userMapper.entityToUserResponse(getUserEntityById(userId));
+    }
+
+    @Override
+    public User getUserEntityById(String userId) {
         return userRepository.findById(userId)
-                .map(userMapper::entityToUserResponse)
                 .orElseThrow(() -> new EntityNotFoundException("No user found with id: " + userId));
     }
 
     @Override
     public UserResponse updateUser(String userId, UpdateUserRequest request) {
-//        var user = userRepository.findById(userId)
-//                .orElseThrow(() -> new EntityNotFoundException(""));
-//
-//        var userToUpdate = userMapper.updateUserRequestToEntity(request, user);
-//
-//        var updatedUser = userRepository.save(userToUpdate);
-//
-//        return userMapper.entityToUserResponse(updatedUser);
-        return null;
+        var user = getUserEntityById(userId);
+        var userToUpdate = userMapper.updateUserRequestToEntity(request, user);
+        var updatedUser = userRepository.save(userToUpdate);
+        return userMapper.entityToUserResponse(updatedUser);
     }
 
     @Override
     public void deleteUserById(String userId) {
-        getUserById(userId);
+        getUserEntityById(userId);
         userRepository.deleteById(userId);
     }
 
@@ -71,5 +71,12 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("No user found with username: " + username));
+    }
+
+    @Override
+    public User updatePassword(String userId, UpdatePasswordRequest request) {
+        var user = getUserEntityById(userId);
+        user.setPassword(request.getPassword());
+        return userRepository.save(user);
     }
 }

@@ -102,6 +102,26 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
+    public <T> T extractClaim(String token, String claimName, Class<T> clazz) {
+        try {
+            SignedJWT signedJWT = SignedJWT.parse(token);
+            JWTClaimsSet claims = signedJWT.getJWTClaimsSet();
+
+            Object claimValue = claims.getClaim(claimName);
+            if (claimValue == null) {
+                return null;
+            }
+
+            return clazz.cast(claimValue);
+
+        } catch (ParseException e) {
+            throw new RuntimeException("Invalid JWT token", e);
+        } catch (ClassCastException e) {
+            throw new RuntimeException("Invalid claim type for claim: " + claimName, e);
+        }
+    }
+
+    @Override
     public String getSubject(String token) {
         return extractClaim(token, JWTClaimsSet::getSubject);
     }

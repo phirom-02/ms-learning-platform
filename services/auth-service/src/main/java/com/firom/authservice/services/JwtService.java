@@ -18,6 +18,9 @@ public interface JwtService {
 
     <T> T extractClaim(String token, Function<JWTClaimsSet, T> claimsResolver);
 
+    <T> T extractClaim(String token, String claimName, Class<T> clazz);
+
+
     String getSubject(String token);
 
 }

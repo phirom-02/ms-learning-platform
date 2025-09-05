@@ -79,4 +79,31 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(status).body(new ErrorResponse(error));
     }
+
+    @ExceptionHandler(SignupException.class)
+    public ResponseEntity<ErrorResponse> handleSignupException(SignupException e) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("message", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(error));
+    }
+
+    @ExceptionHandler(PasswordChangeException.class)
+    public ResponseEntity<ErrorResponse> handlePasswordChangeException(PasswordChangeException e) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("message", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(error));
+    }
+
+    @ExceptionHandler(LoginException.class)
+    public ResponseEntity<ErrorResponse> handleLoginException(LoginException e) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("message", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(error));
+    }
 }
