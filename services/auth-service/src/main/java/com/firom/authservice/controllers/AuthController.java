@@ -7,6 +7,7 @@ import com.firom.authservice.dto.request.VerifyEmailRequest;
 import com.firom.authservice.dto.response.ApiResponse;
 import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
+import com.firom.authservice.dto.response.UserResponse;
 import com.firom.authservice.producers.AuthProducer;
 import com.firom.authservice.services.AuthService;
 import jakarta.validation.Valid;
@@ -49,9 +50,9 @@ public class AuthController {
     }
 
     @PostMapping("/verify-email/request")
-    public ResponseEntity<ApiResponse<String>> verifyEmail(@RequestBody @Valid VerifyEmailRequest request) {
-        String token = authService.requestVerifyEmail(request);
-        ApiResponse<String> response = new ApiResponse<>(token);
+    public ResponseEntity<ApiResponse<Void>> verifyEmail(@RequestBody @Valid VerifyEmailRequest request) {
+        authService.requestVerifyEmail(request);
+        ApiResponse<Void> response = new ApiResponse<>(null);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
     }
@@ -136,11 +137,20 @@ public class AuthController {
      * @return
      */
     @PostMapping("/password-reset/change-password")
-    public ResponseEntity<ApiResponse<Void>> changePassword(@RequestBody @Valid ChangePasswordRequest request, @RequestAttribute("userId") String userId) {
+    public ResponseEntity<ApiResponse<Void>> changePassword(
+            @RequestBody @Valid ChangePasswordRequest request,
+            @RequestAttribute("userId") String userId
+    ) {
         authService.changePassword(userId, request);
         ApiResponse<Void> response = new ApiResponse<>(null);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<ApiResponse<UserResponse>> getCurrentUserDetails(@RequestAttribute("userId") String userId) {
+        ApiResponse<UserResponse> response = new ApiResponse<>(authService.getCurrentUserDetails(userId));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
+    }
 }

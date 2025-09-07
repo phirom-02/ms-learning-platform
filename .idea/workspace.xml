@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="refactor: remove unwanted role type when sign up an account">
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="refactor: extract duplicated code and create a common method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserInternalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserInternalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/security/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,8 +314,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.UserServiceApplication" />
         <item itemvalue="Spring Boot.AuthServiceApplication" />
+        <item itemvalue="Spring Boot.UserServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Gradle.notification-service [clean build]" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
@@ -360,7 +358,8 @@
       <workItem from="1757128762702" duration="626000" />
       <workItem from="1757134905434" duration="2648000" />
       <workItem from="1757227911813" duration="10146000" />
-      <workItem from="1757254872522" duration="2995000" />
+      <workItem from="1757254872522" duration="3323000" />
+      <workItem from="1757258551742" duration="1117000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -522,7 +521,39 @@
       <option name="project" value="LOCAL" />
       <updated>1757257266185</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="refactor: Enable MongoDB auditing&#10;&#10;Enable MongoDB auditing in-order to generate createAt and updatedAt field of User automatically">
+      <option name="closed" value="true" />
+      <created>1757257968447</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1757257968447</updated>
+    </task>
+    <task id="LOCAL-00022" summary="add: Enable MongoDB auditing&#10;&#10;Enable MongoDB auditing in-order to generate createAt and updatedAt field of User automatically">
+      <option name="closed" value="true" />
+      <created>1757257980636</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1757257980636</updated>
+    </task>
+    <task id="LOCAL-00023" summary="refactor: extract duplicated code and create a common method">
+      <option name="closed" value="true" />
+      <created>1757259050060</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1757259050060</updated>
+    </task>
+    <task id="LOCAL-00024" summary="refactor: extract duplicated code and create a common method">
+      <option name="closed" value="true" />
+      <created>1757259082140</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1757259082140</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +586,10 @@
     <MESSAGE value="feat: implement email verification feature" />
     <MESSAGE value="feat: work on html response for when account(s) email has been verified" />
     <MESSAGE value="refactor: remove unwanted role type when sign up an account" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: remove unwanted role type when sign up an account" />
+    <MESSAGE value="refactor: Enable MongoDB auditing&#10;&#10;Enable MongoDB auditing in-order to generate createAt and updatedAt field of User automatically" />
+    <MESSAGE value="add: Enable MongoDB auditing&#10;&#10;Enable MongoDB auditing in-order to generate createAt and updatedAt field of User automatically" />
+    <MESSAGE value="refactor: extract duplicated code and create a common method" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: extract duplicated code and create a common method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -31,7 +31,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -72,19 +71,8 @@ public class AuthServiceImpl implements AuthService {
         ResponseEntity<ApiResponse<User>> response = userClient.createUser(createUserRequest);
         User user = Objects.requireNonNull(response.getBody()).getData();
 
-        // Generate email verification token and
-        String verificationToken = jwtService.generateToken(
-                user.getUsername(),
-                setTokenClaims(user.getId(), user.getEmail(), user.getRoles()),
-                accessTokenValidity
-        );
-
         // Send email verification message
-        authProducer.sendEmailVerification(EmailVerificationMessage.builder()
-                .email(user.getEmail())
-                .username(user.getUsername())
-                .verificationToken(verificationToken)
-                .build());
+        sendEmailVerification(user);
 
         // Return response
         return authMapper.userToSignUpResponse(user);
@@ -254,12 +242,34 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String requestVerifyEmail(VerifyEmailRequest request) {
+    public void requestVerifyEmail(VerifyEmailRequest request) {
+        // Retrieve user by email
         ResponseEntity<ApiResponse<User>> response = userClient.getUserByEmail(request.getEmail());
         User user = Objects.requireNonNull(response.getBody()).getData();
+        // Send email verification message
+        sendEmailVerification(user);
+    }
+
+    @Override
+    public UserResponse getCurrentUserDetails(String userId) {
+        // Retrieve user by userID
+        ResponseEntity<ApiResponse<User>> response = userClient.getUserById(userId);
+        User user = Objects.requireNonNull(response.getBody()).getData();
+        // Map user data to a proper details response
+        return authMapper.usertoUserResponse(user);
+    }
+
+    private void sendEmailVerification(User user) {
+        // Build token claims
         Map<String, Object> claims = setTokenClaims(user.getId(), user.getEmail(), user.getRoles());
-        // TODO: send message to notification service
-        return jwtService.generateToken(user.getUsername(), claims, accessTokenValidity);
+        // Generate email verification token and
+        String verificationToken = jwtService.generateToken(user.getUsername(), claims, accessTokenValidity);
+        // Send email verification message
+        authProducer.sendEmailVerification(EmailVerificationMessage.builder()
+                .email(user.getEmail())
+                .username(user.getUsername())
+                .verificationToken(verificationToken)
+                .build());
     }
 
     private Map<String, Object> setTokenClaims(String id, String email, Set<UserRoles> roles) {

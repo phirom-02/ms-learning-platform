@@ -71,7 +71,8 @@ public class SecurityConfig {
         http.securityMatcher(
                         "/api/v1/auth/oauth2/**",
                         "/api/v1/auth/password-reset/**",
-                        "/api/v1/auth/verify-email"
+                        "/api/v1/auth/verify-email",
+                        "/api/v1/auth/me"
                 ).csrf(AbstractHttpConfigurer::disable)
                 .headers(AbstractHttpConfigurer::disable)
                 .with(authorizationServerConfigurer, Customizer.withDefaults())

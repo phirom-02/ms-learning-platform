@@ -6,6 +6,7 @@ import com.firom.authservice.dto.request.SignUpRequest;
 import com.firom.authservice.dto.request.VerifyEmailRequest;
 import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
+import com.firom.authservice.dto.response.UserResponse;
 
 public interface AuthService {
 
@@ -23,7 +24,7 @@ public interface AuthService {
 
     String verifyEmail(String token);
 
-    String requestVerifyEmail(VerifyEmailRequest request);
+    void requestVerifyEmail(VerifyEmailRequest request);
 
-//    String requestVerifyEmail(VerifyEmailRequest request);
+    UserResponse getCurrentUserDetails(String userId);
 }

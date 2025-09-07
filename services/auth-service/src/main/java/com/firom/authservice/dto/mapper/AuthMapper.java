@@ -41,9 +41,9 @@ public class AuthMapper {
                 .lastName(user.getLastName())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .roles(user.getRoles())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
+                .roles(user.getRoles())
                 .build();
     }
 }

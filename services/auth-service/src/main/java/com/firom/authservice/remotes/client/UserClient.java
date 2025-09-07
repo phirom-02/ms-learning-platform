@@ -34,4 +34,5 @@ public interface UserClient {
 
     @PatchMapping("/{user-id}/disable")
     ResponseEntity<ApiResponse<Void>> disableUser(@PathVariable("user-id") String userId);
+
 }
