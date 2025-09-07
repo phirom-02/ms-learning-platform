@@ -1,4 +1,4 @@
-package com.firom.authservice.configs;
+package com.firom.authservice.configs.rabbitmq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -7,6 +7,9 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * RabbitMQ(s) configuration for Auth queue
+ */
 @Configuration
 public class AuthRabbitMQConfig {
 

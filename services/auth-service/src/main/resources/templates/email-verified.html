@@ -36,26 +36,6 @@
             font-size: 16px;
         }
 
-        .verify-button {
-            background-color: #4CAF50;
-            padding: 14px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            border: none;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .verify-button:hover {
-            background-color: #3d9a52;
-        }
-
-        .verify-link {
-            color: white;
-            text-decoration: none;
-        }
-
         .footer {
             font-size: 12px;
             color: #999;
@@ -67,21 +47,14 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>Email Verification</h1>
+        <h1>Your Account Has Been Verified!</h1>
     </div>
     <div class="content">
-        <p>Hello, <b th:text="${username}"></b></p>
-        <p>Thank you for registering!<br/> Please verify your email address by clicking the button below:</p>
+        <p>Hello, again <b th:text="${username}"></b></p>
+        <p>Thank you for verifying your email!<br/> You can get started to access to our features by login your
+            account</p>
 
-        <a class="verify-link" th:href="${verificationLink}" target="_blank">
-            <button class="verify-button verify-link">
-                Verify Email
-            </button>
-        </a>
-
-        <p>If you didn’t sign up for this account, you can safely ignore this email.</p>
-
-        <p>Thanks, <br/> Firom</p>
+        <p>Thanks again, <br/> Firom</p>
     </div>
     <div class="footer">
         &copy; <span th:text="${year}"></span> Firom. All rights reserved.

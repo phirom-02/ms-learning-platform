@@ -27,12 +27,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +43,7 @@ public class AuthServiceImpl implements AuthService {
     private final RefreshTokenService refreshTokenService;
     private final PasswordEncoder passwordEncoder;
     private final AuthProducer authProducer;
+    private final TemplateEngine templateEngine;
 
     @Value("#{new Long('${application.jwt.access-token-validity}')}")
     private Long accessTokenValidity;
@@ -219,7 +218,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void verifyEmail(String token) {
+    public String verifyEmail(String token) {
         if (!jwtService.isTokenValid(token)) {
             throw new InvalidTokenException("Invalid or expired token");
         }
@@ -235,6 +234,16 @@ public class AuthServiceImpl implements AuthService {
         }
         // Enable user after email verification
         userClient.enableUser(userId);
+
+        // TODO: Return html
+
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("username", user.getUsername());
+        variables.put("year", Calendar.getInstance().get(Calendar.YEAR));
+        Context context = new Context();
+        context.setVariables(variables);
+
+        return templateEngine.process("email-verified.html", context);
     }
 
     @Override

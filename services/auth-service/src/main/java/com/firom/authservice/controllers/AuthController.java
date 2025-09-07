@@ -41,14 +41,11 @@ public class AuthController {
      * Verify user email
      *
      * @param token
-     * @return
+     * @return Html page that let a user know their account has been verified
      */
     @GetMapping("/verify-email")
-    public ResponseEntity<ApiResponse<Void>> verifyEmail(@RequestParam("token") String token) {
-        authService.verifyEmail(token);
-        ApiResponse<Void> response = new ApiResponse<>(null);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(response);
+    public String verifyEmail(@RequestParam("token") String token) {
+        return authService.verifyEmail(token);
     }
 
     @PostMapping("/verify-email/request")

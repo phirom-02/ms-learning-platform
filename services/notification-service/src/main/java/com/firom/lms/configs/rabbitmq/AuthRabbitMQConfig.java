@@ -7,6 +7,9 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * RabbitMQ(s) configuration for Auth queue
+ */
 @Configuration
 public class AuthRabbitMQConfig {
 

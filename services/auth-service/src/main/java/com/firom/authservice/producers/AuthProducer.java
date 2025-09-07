@@ -1,6 +1,6 @@
 package com.firom.authservice.producers;
 
-import com.firom.authservice.configs.AuthRabbitMQConfig;
+import com.firom.authservice.configs.rabbitmq.AuthRabbitMQConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
