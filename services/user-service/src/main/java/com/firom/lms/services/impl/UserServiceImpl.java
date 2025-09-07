@@ -7,14 +7,20 @@ import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
 import com.firom.lms.entRepo.UserRepository;
+import com.firom.lms.entRepo.UserRoles;
 import com.firom.lms.exceptions.CustomDuplicateKeyException;
 import com.firom.lms.exceptions.EntityNotFoundException;
 import com.firom.lms.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -36,10 +42,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponse> getAllUsers() {
-        return userRepository.findAll().stream()
-                .map(userMapper::entityToUserResponse)
-                .toList();
+    public Page<UserResponse> getAllUsers(
+            int page,
+            int size,
+            String sort,
+            String username,
+            String email,
+            String firstName,
+            String lastName,
+            String roles
+    ) {
+        // Convert list of roles in string to UserRole enum
+        List<UserRoles> mappedRole = Arrays.stream(roles.split(","))
+                .map(UserRoles::valueOf).toList();
+
+        // Pagination setup
+        List<String> sortValues = List.of(sort.split(","));
+        Pageable pageable = PageRequest.of(page, size, Sort
+                .by(Sort.Direction.valueOf(sortValues.get(1)), sortValues.get(0))
+        );
+
+        return userRepository.findUsersByFilters(
+                username,
+                email,
+                firstName,
+                lastName,
+                mappedRole,
+                pageable
+        );
     }
 
     @Override

@@ -5,13 +5,21 @@ import com.firom.lms.dto.request.UpdatePasswordRequest;
 import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface UserService {
     User createUser(CreateUserRequest request);
 
-    List<UserResponse> getAllUsers();
+    Page<UserResponse> getAllUsers(int page,
+                                   int size,
+                                   String sort,
+                                   String username,
+                                   String email,
+                                   String firstName,
+                                   String lastName,
+                                   String roles);
 
     UserResponse getUserById(String userId);
 
