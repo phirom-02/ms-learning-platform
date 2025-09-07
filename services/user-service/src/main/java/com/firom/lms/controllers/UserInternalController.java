@@ -45,7 +45,10 @@ public class UserInternalController {
     }
 
     @PatchMapping("/{user-id}/change-password")
-    public ResponseEntity<ApiResponse<Void>> updatePassword(@PathVariable(name = "user-id") String userId, @RequestBody UpdatePasswordRequest request) {
+    public ResponseEntity<ApiResponse<Void>> updatePassword(
+            @PathVariable(name = "user-id") String userId,
+            @RequestBody UpdatePasswordRequest request
+    ) {
         userService.updatePassword(userId, request);
         ApiResponse<Void> response = new ApiResponse<>(null);
         return ResponseEntity.status(HttpStatus.OK)

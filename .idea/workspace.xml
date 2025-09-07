@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="refactor: remove unwanted role type when sign up an account">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserInternalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserInternalController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -357,7 +360,7 @@
       <workItem from="1757128762702" duration="626000" />
       <workItem from="1757134905434" duration="2648000" />
       <workItem from="1757227911813" duration="10146000" />
-      <workItem from="1757254872522" duration="2352000" />
+      <workItem from="1757254872522" duration="2995000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -511,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757256868398</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="refactor: remove unwanted role type when sign up an account">
+      <option name="closed" value="true" />
+      <created>1757257266185</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1757257266185</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

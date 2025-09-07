@@ -23,6 +23,7 @@ public class AuthMapper {
 
     public SignUpResponse userToSignUpResponse(User user) {
         return SignUpResponse.builder()
+                .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .username(user.getUsername())
