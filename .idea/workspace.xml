@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement email verification feature">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="refactor: remove unwanted role type when sign up an account">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/AuthRabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/rabbitmq/AuthRabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/rabbitmq/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/rabbitmq/RabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/producers/AuthProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/producers/AuthProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/services/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/AuthRabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/AuthRabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/RabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/resources/templates/email-verification.html" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/resources/templates/email-verification.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,7 +357,7 @@
       <workItem from="1757128762702" duration="626000" />
       <workItem from="1757134905434" duration="2648000" />
       <workItem from="1757227911813" duration="10146000" />
-      <workItem from="1757254872522" duration="1350000" />
+      <workItem from="1757254872522" duration="2352000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -506,7 +495,23 @@
       <option name="project" value="LOCAL" />
       <updated>1757238036044</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: work on html response for when account(s) email has been verified">
+      <option name="closed" value="true" />
+      <created>1757256399411</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1757256399411</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactor: remove unwanted role type when sign up an account">
+      <option name="closed" value="true" />
+      <created>1757256868398</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1757256868398</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +542,9 @@
     <MESSAGE value="feat: demo setup message queue rabbit mq" />
     <MESSAGE value="feat: implement email verification featuer" />
     <MESSAGE value="feat: implement email verification feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement email verification feature" />
+    <MESSAGE value="feat: work on html response for when account(s) email has been verified" />
+    <MESSAGE value="refactor: remove unwanted role type when sign up an account" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: remove unwanted role type when sign up an account" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

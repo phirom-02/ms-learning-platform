@@ -31,6 +31,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -54,6 +55,12 @@ public class AuthServiceImpl implements AuthService {
         if (!request.getPassword().matches(request.getPasswordConfirm())) {
             throw new SignupException("Password does not match");
         }
+
+        // Filter out unwanted role type (ADMIN)
+        List<String> roles = request.getRoles()
+                .stream().filter(role -> UserRoles.valueOf(role) != UserRoles.ADMIN)
+                .toList();
+        request.setRoles(roles);
 
         // Map to CreateUserRequest
         CreateUserRequest createUserRequest = authMapper.signUpRequestToCreateUserRequest(request);
