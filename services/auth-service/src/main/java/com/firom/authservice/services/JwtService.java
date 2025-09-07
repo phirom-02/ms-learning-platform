@@ -10,7 +10,7 @@ public interface JwtService {
 
     RSAKey getRsaKey();
 
-    String generateToken(String subject, Map<String, Object> claims, long ttlMillis);
+    String generateToken(String subject, Map<String, Object> claims, long ttlSeconds);
 
     boolean isTokenValid(String token);
 

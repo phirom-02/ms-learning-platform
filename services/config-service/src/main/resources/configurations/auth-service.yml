@@ -16,6 +16,7 @@ spring:
             client-secret: 7b8059230e0f34af3a6909ab8881f793
 
 application:
+  email-verification-url: http://localhost:8081/api/v1/auth/verify-email
   remotes:
     user-url: http://localhost:8081/api/v1/users
   jwt:

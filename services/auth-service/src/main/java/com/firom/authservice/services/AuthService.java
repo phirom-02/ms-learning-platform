@@ -21,7 +21,7 @@ public interface AuthService {
 
     void changePassword(String userId, ChangePasswordRequest request);
 
-    void verifyEmail(String userId, String email);
+    void verifyEmail(String token);
 
     String requestVerifyEmail(VerifyEmailRequest request);
 

@@ -7,7 +7,7 @@ import com.firom.authservice.dto.request.VerifyEmailRequest;
 import com.firom.authservice.dto.response.ApiResponse;
 import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
-import com.firom.authservice.producers.AuthMessageProducer;
+import com.firom.authservice.producers.AuthProducer;
 import com.firom.authservice.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-    private final AuthMessageProducer authMessageProducer;
+    private final AuthProducer authProducer;
 
     /**
      * Signup endpoint
@@ -40,13 +40,12 @@ public class AuthController {
     /**
      * Verify user email
      *
-     * @param email
-     * @param userId
+     * @param token
      * @return
      */
     @GetMapping("/verify-email")
-    public ResponseEntity<ApiResponse<Void>> verifyEmail(@RequestAttribute String email, @RequestAttribute String userId) {
-        authService.verifyEmail(userId, email);
+    public ResponseEntity<ApiResponse<Void>> verifyEmail(@RequestParam("token") String token) {
+        authService.verifyEmail(token);
         ApiResponse<Void> response = new ApiResponse<>(null);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
@@ -147,11 +146,4 @@ public class AuthController {
                 .body(response);
     }
 
-    @GetMapping("/test-message")
-    public ResponseEntity<ApiResponse<Void>> testMessage() {
-        authMessageProducer.sendAuthNotification("Message from auth service");
-        ApiResponse<Void> response = new ApiResponse<>(null);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(response);
-    }
 }

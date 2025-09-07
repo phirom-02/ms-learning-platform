@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement basic account email verification and account enable status update">
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: demo setup message queue rabbit mq">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/TestMessageSender.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,21 +57,24 @@
         <task path="$PROJECT_DIR$/services/idp-service">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/services/notification-service">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="auth-service" type="f1a62948:ProjectNode" />
+                <item name="notification-service" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="auth-service" type="f1a62948:ProjectNode" />
+                <item name="notification-service" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="auth-service" type="f1a62948:ProjectNode" />
+                <item name="notification-service" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -121,6 +123,7 @@
     &quot;Gradle.Build discovery-service.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build idp-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build notification-service.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build user-service.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.auth-service [build].executor&quot;: &quot;Run&quot;,
@@ -130,6 +133,7 @@
     &quot;Gradle.idp-service [build].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.idp-service [clean build].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.idp-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.notification-service [clean build].executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.AuthServiceApplication | #1.executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.AuthServiceApplication | #2.executor&quot;: &quot;Run&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
@@ -147,6 +151,7 @@
     &quot;Spring Boot.DiscoveryApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.IdpServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
@@ -203,13 +208,13 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthServiceApplication">
-    <configuration name="auth-service [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="notification-service [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services/auth-service" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services/notification-service" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--scan" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -225,9 +230,6 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="AuthServiceApplication | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/AuthServiceApplication.http" index="2" requestIdentifier="#2" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
@@ -303,13 +305,21 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.AuthServiceApplication" />
-        <item itemvalue="Spring Boot.UserServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
-        <item itemvalue="Gradle.auth-service [clean build]" />
-        <item itemvalue="HTTP Request.AuthServiceApplication | #2" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Gradle.notification-service [clean build]" />
+        <item itemvalue="Spring Boot.UserServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -345,7 +355,10 @@
       <workItem from="1756998846687" duration="7027000" />
       <workItem from="1757054470861" duration="4213000" />
       <workItem from="1757058802484" duration="8000" />
-      <workItem from="1757058857239" duration="959000" />
+      <workItem from="1757058857239" duration="6658000" />
+      <workItem from="1757128762702" duration="626000" />
+      <workItem from="1757134905434" duration="2648000" />
+      <workItem from="1757227911813" duration="638000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -459,7 +472,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757057238941</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat: demo setup message queue rabbit mq">
+      <option name="closed" value="true" />
+      <created>1757064830174</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1757064830174</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +508,8 @@
     <MESSAGE value="refactor: update security configuration of auth-service" />
     <MESSAGE value="feat: enable secure service-to-service communication using OAuth2 client_credentials&#10;&#10;- Fetch access tokens via OkHttp using client_credentials grant&#10;- Automatically attach tokens to all Feign client requests via RequestInterceptor&#10;- Enables secure internal service-to-service communication" />
     <MESSAGE value="feat: implement basic account email verification and account enable status update" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement basic account email verification and account enable status update" />
+    <MESSAGE value="feat: demo setup message queue rabbit mq" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: demo setup message queue rabbit mq" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

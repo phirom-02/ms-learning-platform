@@ -66,19 +66,21 @@
         <h1>Email Verification</h1>
     </div>
     <div class="content">
-        <p>Hello, <b>{firstName} {lastName}</b></p>
+        <p>Hello, <b th:text="${username}"></b></p>
         <p>Thank you for registering!<br/> Please verify your email address by clicking the button below:</p>
 
-        <button class="verify-button">
-            <a class="verify-link" href="{{verificationLink}}">Verify Email</a>
-        </button>
+        <a class="verify-link" th:href="${verificationLink}" target="_blank">
+            <button class="verify-button">
+                Verify Email
+            </button>
+        </a>
 
         <p>If you didn’t sign up for this account, you can safely ignore this email.</p>
 
         <p>Thanks, Firom</p>
     </div>
     <div class="footer">
-        &copy; {{year}} Your Firom. All rights reserved.
+        &copy; <span th:text="${year}"></span> Your Firom. All rights reserved.
     </div>
 </div>
 </body>

@@ -11,6 +11,8 @@ import com.firom.authservice.entRepo.RefreshToken;
 import com.firom.authservice.entRepo.User;
 import com.firom.authservice.entRepo.UserRoles;
 import com.firom.authservice.exceptions.*;
+import com.firom.authservice.producers.AuthProducer;
+import com.firom.authservice.producers.EmailVerificationMessage;
 import com.firom.authservice.remotes.client.UserClient;
 import com.firom.authservice.services.AuthService;
 import com.firom.authservice.services.JwtService;
@@ -25,6 +27,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +44,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
     private final PasswordEncoder passwordEncoder;
+    private final AuthProducer authProducer;
 
     @Value("#{new Long('${application.jwt.access-token-validity}')}")
     private Long accessTokenValidity;
@@ -51,14 +55,32 @@ public class AuthServiceImpl implements AuthService {
         if (!request.getPassword().matches(request.getPasswordConfirm())) {
             throw new SignupException("Password does not match");
         }
+
         // Map to CreateUserRequest
         CreateUserRequest createUserRequest = authMapper.signUpRequestToCreateUserRequest(request);
+
         // Encode password
         createUserRequest.setPassword(passwordEncoder.encode(request.getPassword()));
+
         // Create a new user by requesting to user service
-        User user;
         ResponseEntity<ApiResponse<User>> response = userClient.createUser(createUserRequest);
-        user = Objects.requireNonNull(response.getBody()).getData();
+        User user = Objects.requireNonNull(response.getBody()).getData();
+
+        // Generate email verification token and
+        String verificationToken = jwtService.generateToken(
+                user.getUsername(),
+                setTokenClaims(user.getId(), user.getEmail(), user.getRoles()),
+                accessTokenValidity
+        );
+
+        // Send email verification message
+        authProducer.sendEmailVerification(EmailVerificationMessage.builder()
+                .email(user.getEmail())
+                .username(user.getUsername())
+                .verificationToken(verificationToken)
+                .build());
+
+        // Return response
         return authMapper.userToSignUpResponse(user);
     }
 
@@ -197,7 +219,13 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void verifyEmail(String userId, String email) {
+    public void verifyEmail(String token) {
+        if (!jwtService.isTokenValid(token)) {
+            throw new InvalidTokenException("Invalid or expired token");
+        }
+        // Extract userid and email from token
+        String userId = jwtService.extractClaim(token, "userId", String.class);
+        String email = jwtService.extractClaim(token, "email", String.class);
         // Check if user exists in db
         ResponseEntity<ApiResponse<User>> response = userClient.getUserById(userId);
         User user = Objects.requireNonNull(response.getBody()).getData();
@@ -214,9 +242,8 @@ public class AuthServiceImpl implements AuthService {
         ResponseEntity<ApiResponse<User>> response = userClient.getUserByEmail(request.getEmail());
         User user = Objects.requireNonNull(response.getBody()).getData();
         Map<String, Object> claims = setTokenClaims(user.getId(), user.getEmail(), user.getRoles());
-        String token = jwtService.generateToken(user.getUsername(), claims, accessTokenValidity);
         // TODO: send message to notification service
-        return token;
+        return jwtService.generateToken(user.getUsername(), claims, accessTokenValidity);
     }
 
     private Map<String, Object> setTokenClaims(String id, String email, Set<UserRoles> roles) {
