@@ -1,8 +1,10 @@
-package com.firom.authservice.services.impl;
+package com.firom.lms.services.impl;
 
-import com.firom.authservice.services.JwtService;
+import com.firom.lms.services.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.oauth2.jwt.*;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -13,30 +15,7 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class JwtServiceImpl implements JwtService {
 
-
-    private final JwtEncoder jwtEncoder;
     private final JwtDecoder jwtDecoder;
-
-    // Generate token
-    @Override
-    public String generateToken(String subject, Map<String, Object> customClaims, long ttlSeconds) {
-        Instant now = Instant.now();
-        Instant expiry = now.plusSeconds(ttlSeconds);
-
-
-        JwtClaimsSet.Builder claimsBuilder = JwtClaimsSet.builder()
-                .subject(subject)
-                .issuedAt(now)
-                .expiresAt(expiry)
-                .issuer("http://localhost:8083");
-
-        if (customClaims != null) {
-            customClaims.forEach(claimsBuilder::claim);
-        }
-
-        JwtClaimsSet claims = claimsBuilder.build();
-        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-    }
 
     // Validate token
     @Override

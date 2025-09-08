@@ -1,4 +1,4 @@
-package com.firom.authservice.services;
+package com.firom.lms.services;
 
 import org.springframework.security.oauth2.jwt.Jwt;
 
@@ -6,9 +6,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 public interface JwtService {
-
-    String generateToken(String subject, Map<String, Object> claims, long ttlSeconds);
-
     boolean isTokenValid(String token);
 
     Map<String, Object> getClaims(String token);
@@ -17,7 +14,5 @@ public interface JwtService {
 
     <T> T extractClaim(String token, String claimName, Class<T> clazz);
 
-
     String getSubject(String token);
-
 }
