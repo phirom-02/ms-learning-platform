@@ -8,20 +8,20 @@ import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
 import com.firom.lms.entRepo.UserRepository;
 import com.firom.lms.entRepo.UserRoles;
+import com.firom.lms.entRepo.UserSpecification;
 import com.firom.lms.exceptions.CustomDuplicateKeyException;
-import com.firom.lms.exceptions.EntityNotFoundException;
+import com.firom.lms.exceptions.InvalidRoleException;
 import com.firom.lms.services.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         try {
             var userToCreate = userMapper.createUserRequestToEntity(request);
             return userRepository.save(userToCreate);
-        } catch (DuplicateKeyException e) {
+        } catch (Exception e) {
             throw new CustomDuplicateKeyException("This email in used: " + request.getEmail());
         }
     }
@@ -52,24 +52,42 @@ public class UserServiceImpl implements UserService {
             String lastName,
             String roles
     ) {
-        // Convert list of roles in string to UserRole enum
-        List<UserRoles> mappedRole = Arrays.stream(roles.split(","))
-                .map(UserRoles::valueOf).toList();
+        // Parse roles
+        List<UserRoles> mappedRoles;
+        try {
+            mappedRoles = roles == null
+                    ? null
+                    : Arrays.stream(roles.split(","))
+                    .map(String::trim)
+                    .map(UserRoles::valueOf)
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            throw new InvalidRoleException("Invalid role: " + roles);
+        }
 
-        // Pagination setup
-        List<String> sortValues = List.of(sort.split(","));
-        Pageable pageable = PageRequest.of(page, size, Sort
-                .by(Sort.Direction.valueOf(sortValues.get(1)), sortValues.get(0))
-        );
+        // Parse sort. e.g. createdAt,DESC or createdAt,desc
+        String[] sortParts = sort.split(",");
+        Sort.Direction sortDirection = Sort.Direction
+                .fromOptionalString(sortParts[1].toUpperCase())
+                .orElse(Sort.Direction.ASC);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortParts[0]));
 
-        return userRepository.findUsersByFilters(
-                username,
-                email,
-                firstName,
-                lastName,
-                mappedRole,
-                pageable
-        );
+        // Build specification
+        Specification<User> spec = UserSpecification.unrestricted()
+                .and(UserSpecification.usernameContains(username))
+                .and(UserSpecification.emailContains(email))
+                .and(UserSpecification.firstNameContains(firstName))
+                .and(UserSpecification.lastNameContains(lastName))
+                .and(UserSpecification.hasAnyRole(mappedRoles));
+
+        // Query users data + pagination
+        Page<User> users = userRepository.findAll(spec, pageable);
+
+        List<UserResponse> response = users.getContent().stream()
+                .map(userMapper::entityToUserResponse)
+                .toList();
+
+        return new PageImpl<>(response, pageable, users.getTotalElements());
     }
 
     @Override
@@ -79,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserEntityById(String userId) {
-        return userRepository.findById(userId)
+        return userRepository.findById(UUID.fromString(userId))
                 .orElseThrow(() -> new EntityNotFoundException("No user found with id: " + userId));
     }
 
@@ -94,7 +112,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(String userId) {
         getUserEntityById(userId);
-        userRepository.deleteById(userId);
+        userRepository.deleteById(UUID.fromString(userId));
     }
 
     @Override

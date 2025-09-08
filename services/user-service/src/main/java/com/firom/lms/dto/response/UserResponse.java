@@ -7,19 +7,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserResponse {
-    private String id;
+    private UUID id;
     private String firstName;
     private String lastName;
     private String username;
     private String email;
-    private Set<UserRoles> roles;
+    private List<UserRoles> roles;
     private boolean enabled;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

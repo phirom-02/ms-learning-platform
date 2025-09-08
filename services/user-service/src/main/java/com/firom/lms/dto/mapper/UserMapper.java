@@ -5,19 +5,26 @@ import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
 import com.firom.lms.entRepo.UserRoles;
+import com.firom.lms.exceptions.InvalidRoleException;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Component
 public class UserMapper {
 
     public User createUserRequestToEntity(CreateUserRequest request) {
-        Set<UserRoles> roles = new HashSet<>();
-        request.getRoles().forEach(role -> roles
-                .add(UserRoles.valueOf(role))
-        );
+
+        List<UserRoles> roles = request.getRoles().stream()
+                .map(role ->
+                        {
+                            try {
+                                return UserRoles.valueOf(role);
+                            } catch (IllegalArgumentException e) {
+                                throw new InvalidRoleException("Invalid role: " + request.getRoles());
+                            }
+                        }
+                ).toList();
 
         return User.builder()
                 .firstName(request.getFirstName())
@@ -43,13 +50,6 @@ public class UserMapper {
     }
 
     public User updateUserRequestToEntity(UpdateUserRequest request, User user) {
-//        if (request.getEmail() != null) {
-//            user.setEmail(request.getEmail());
-//        }
-//        if (request.getName() != null) {
-//            user.setName(request.getName());
-//        }
-
         return user;
     }
 }

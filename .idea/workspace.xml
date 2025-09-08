@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="refactor: extract duplicated code and create a common method">
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement user dynamic filtering">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/user-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/user-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,8 +317,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AuthServiceApplication" />
         <item itemvalue="Spring Boot.UserServiceApplication" />
+        <item itemvalue="Spring Boot.AuthServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Gradle.notification-service [clean build]" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
@@ -359,7 +362,8 @@
       <workItem from="1757134905434" duration="2648000" />
       <workItem from="1757227911813" duration="10146000" />
       <workItem from="1757254872522" duration="3323000" />
-      <workItem from="1757258551742" duration="1117000" />
+      <workItem from="1757258551742" duration="7756000" />
+      <workItem from="1757293082727" duration="138000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -553,7 +557,47 @@
       <option name="project" value="LOCAL" />
       <updated>1757259082140</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat: add an endpoint to get the current user information">
+      <option name="closed" value="true" />
+      <created>1757259754904</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1757259754904</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactor: remove unnecessary endpoints">
+      <option name="closed" value="true" />
+      <created>1757259875443</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1757259875443</updated>
+    </task>
+    <task id="LOCAL-00027" summary="refactor: remove unnecessary endpoints">
+      <option name="closed" value="true" />
+      <created>1757259886553</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1757259886553</updated>
+    </task>
+    <task id="LOCAL-00028" summary="refactor: remove unnecessary endpoints">
+      <option name="closed" value="true" />
+      <created>1757259914830</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1757259914830</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: implement user dynamic filtering">
+      <option name="closed" value="true" />
+      <created>1757266276688</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1757266276688</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +633,11 @@
     <MESSAGE value="refactor: Enable MongoDB auditing&#10;&#10;Enable MongoDB auditing in-order to generate createAt and updatedAt field of User automatically" />
     <MESSAGE value="add: Enable MongoDB auditing&#10;&#10;Enable MongoDB auditing in-order to generate createAt and updatedAt field of User automatically" />
     <MESSAGE value="refactor: extract duplicated code and create a common method" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: extract duplicated code and create a common method" />
+    <MESSAGE value="feat: add an endpoint to get the current user information" />
+    <MESSAGE value="refactor: remove unnecessary endpoints from user-service" />
+    <MESSAGE value="refactor: remove unnecessary endpoints" />
+    <MESSAGE value="feat: implement user dynamic filtering" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement user dynamic filtering" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

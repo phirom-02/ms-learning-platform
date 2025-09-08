@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -14,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
 
-    private String id;
+    private UUID id;
 
     private String firstName;
 

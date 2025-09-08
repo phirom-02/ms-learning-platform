@@ -1,13 +1,23 @@
 spring:
-  data:
-    mongodb:
-      username: admin
-      password: change_me!
-      host: localhost
-      port: 27017
-      database: user
-      authentication-database: admin
-      auto-index-creation: true
+  #  data:
+  #    mongodb:
+  #      username: admin
+  #      password: change_me!
+  #      host: localhost
+  #      port: 27017
+  #      database: user
+  #      authentication-database: admin
+  #      auto-index-creation: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/users
+    username: admin
+    password: change_me!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8082

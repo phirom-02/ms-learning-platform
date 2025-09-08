@@ -5,8 +5,8 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class EntityNotFoundException extends RuntimeException {
-    public EntityNotFoundException(String message) {
+public class InvalidRoleException extends RuntimeException {
+    public InvalidRoleException(String message) {
         super(message);
     }
 }

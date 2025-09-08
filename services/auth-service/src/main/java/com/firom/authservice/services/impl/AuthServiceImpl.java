@@ -272,7 +272,7 @@ public class AuthServiceImpl implements AuthService {
                 .build());
     }
 
-    private Map<String, Object> setTokenClaims(String id, String email, Set<UserRoles> roles) {
+    private Map<String, Object> setTokenClaims(UUID id, String email, Set<UserRoles> roles) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", id);
         claims.put("email", email);

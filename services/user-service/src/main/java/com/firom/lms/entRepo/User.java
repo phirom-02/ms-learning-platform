@@ -1,40 +1,51 @@
 package com.firom.lms.entRepo;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
+import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Getter
 @Setter
-@Document
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "users")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
+    @Column(nullable = false)
     private String firstName;
 
+    @Column(unique = true, nullable = false)
     private String lastName;
 
-    @Indexed(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @Indexed(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
-    private Set<UserRoles> roles;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(nullable = false)
+    private List<UserRoles> roles;
 
+    @Column(nullable = false)
     private boolean enabled;
 
     @CreatedDate
