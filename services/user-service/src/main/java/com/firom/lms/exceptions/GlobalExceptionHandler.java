@@ -32,15 +32,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(error));
     }
 
-    @ExceptionHandler(CustomDuplicateKeyException.class)
-    public ResponseEntity<ErrorResponse> handleDuplicateKeyException(CustomDuplicateKeyException e) {
-        Map<String, Object> error = new HashMap<>();
-        error.put("message", e.getMessage());
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse(error));
-    }
-
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException e) {
         Map<String, Object> error = new HashMap<>();

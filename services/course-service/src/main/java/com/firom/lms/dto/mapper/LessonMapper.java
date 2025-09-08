@@ -7,6 +7,7 @@ import com.firom.lms.entRepo.Course;
 import com.firom.lms.entRepo.Lesson;
 import org.springframework.stereotype.Component;
 
+// Not used currently
 @Component
 public class LessonMapper {
 
@@ -28,13 +29,13 @@ public class LessonMapper {
         return lesson;
     }
 
-    public LessonResponse entityToLessonResponse(Lesson lesson) {
-        return LessonResponse.builder()
-                .id(lesson.getId())
-                .title(lesson.getTitle())
-                .description(lesson.getDescription())
-                .resourceType(lesson.getResourceType())
-                .courseId(lesson.getCourse().getId())
-                .build();
-    }
+//    public LessonResponse entityToLessonResponse(Lesson lesson) {
+//        return LessonResponse.builder()
+//                .id(lesson.getId())
+//                .title(lesson.getTitle())
+//                .description(lesson.getDescription())
+//                .resourceType(lesson.getResourceType())
+//                .courseId(lesson.getCourse().getId())
+//                .build();
+//    }
 }

@@ -9,7 +9,6 @@ import com.firom.lms.entRepo.User;
 import com.firom.lms.entRepo.UserRepository;
 import com.firom.lms.entRepo.UserRoles;
 import com.firom.lms.entRepo.UserSpecification;
-import com.firom.lms.exceptions.CustomDuplicateKeyException;
 import com.firom.lms.exceptions.InvalidRoleException;
 import com.firom.lms.services.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,12 +32,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User createUser(CreateUserRequest request) {
-        try {
-            User userToCreate = userMapper.createUserRequestToEntity(request);
-            return userRepository.save(userToCreate);
-        } catch (Exception e) {
-            throw new CustomDuplicateKeyException("This email in used: " + request.getEmail());
-        }
+        User userToCreate = userMapper.createUserRequestToEntity(request);
+        return userRepository.save(userToCreate);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.firom.lms.controllers;
 
 import com.firom.lms.dto.request.CourseResponse;
-import com.firom.lms.dto.request.SaveCourseRequest;
+import com.firom.lms.dto.request.CreateCourseRequest;
 import com.firom.lms.dto.response.ApiResponse;
 import com.firom.lms.services.CourseService;
 import jakarta.validation.Valid;
@@ -20,7 +20,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse<CourseResponse>> createCourse(@RequestBody @Valid SaveCourseRequest request) {
+    public ResponseEntity<ApiResponse<CourseResponse>> createCourse(@RequestBody @Valid CreateCourseRequest request) {
         ApiResponse<CourseResponse> response = new ApiResponse<>(courseService.createCourse(request));
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
@@ -43,7 +43,7 @@ public class CourseController {
     }
 
     @PutMapping("/{course-id}")
-    private ResponseEntity<ApiResponse<CourseResponse>> updateCourse(@PathVariable("course-id") Integer courseId, @RequestBody @Valid SaveCourseRequest request) {
+    private ResponseEntity<ApiResponse<CourseResponse>> updateCourse(@PathVariable("course-id") Integer courseId, @RequestBody @Valid CreateCourseRequest request) {
         ApiResponse<CourseResponse> response = new ApiResponse<>(courseService.updateCourse(courseId, request));
         return ResponseEntity
                 .status(HttpStatus.OK)

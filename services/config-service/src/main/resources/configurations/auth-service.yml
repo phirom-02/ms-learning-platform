@@ -20,8 +20,10 @@ application:
   remotes:
     user-url: http://localhost:8081/api/v1/users
   jwt:
-    access-token-validity: 300 # 5 minutes
-    refresh-token-validity: 1000 # 30m minutes
+    access-token-validity: 14400 # 2 hours
+    refresh-token-validity: 14400 # 2 hours
+#    access-token-validity: 300 # 5 minutes
+#    refresh-token-validity: 1800 # 30 minutes
 
 logging:
   level:

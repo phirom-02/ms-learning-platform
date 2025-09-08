@@ -2,10 +2,9 @@ package com.firom.lms.services.impl;
 
 import com.firom.lms.dto.mapper.CourseMapper;
 import com.firom.lms.dto.request.CourseResponse;
-import com.firom.lms.dto.request.SaveCourseRequest;
+import com.firom.lms.dto.request.CreateCourseRequest;
 import com.firom.lms.entRepo.Course;
 import com.firom.lms.entRepo.CourseRepository;
-import com.firom.lms.services.CategoryService;
 import com.firom.lms.services.CourseService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +17,11 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
 
     private final CourseRepository courseRepository;
-    private final CategoryService categoryService;
     private final CourseMapper courseMapper;
 
     @Override
-    public CourseResponse createCourse(SaveCourseRequest request) {
-        var category = categoryService.getCategoryEntityById(request.getCategoryId());
-        var courseToCreate = courseMapper.saveCourseRequestToEntity(request, category);
+    public CourseResponse createCourse(CreateCourseRequest request) {
+        var courseToCreate = courseMapper.createCourseRequestToEntity(request);
         var course = courseRepository.save(courseToCreate);
         return courseMapper.EntityToCourseResponse(course);
     }
@@ -48,10 +45,9 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CourseResponse updateCourse(Integer courseId, SaveCourseRequest request) {
+    public CourseResponse updateCourse(Integer courseId, CreateCourseRequest request) {
         var course = getCourseEntityById(courseId);
-        var category = categoryService.getCategoryEntityById(request.getCategoryId());
-        var courseToUpdate = courseMapper.saveCourseRequestToEntity(request, course, category);
+        var courseToUpdate = courseMapper.createCourseRequestToEntity(request, course);
         var updatedCourse = courseRepository.save(courseToUpdate);
         return courseMapper.EntityToCourseResponse(updatedCourse);
     }

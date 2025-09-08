@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// Not used currently
 @RestController
 @RequestMapping("/api/v1/courses/categories")
 @RequiredArgsConstructor

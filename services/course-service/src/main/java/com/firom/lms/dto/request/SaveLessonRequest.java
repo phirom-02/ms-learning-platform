@@ -1,6 +1,5 @@
 package com.firom.lms.dto.request;
 
-import com.firom.lms.constants.LessonResourceType;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+// Not used currently
 @Data
 @Builder
 @AllArgsConstructor

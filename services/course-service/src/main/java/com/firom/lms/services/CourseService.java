@@ -1,13 +1,13 @@
 package com.firom.lms.services;
 
 import com.firom.lms.dto.request.CourseResponse;
-import com.firom.lms.dto.request.SaveCourseRequest;
+import com.firom.lms.dto.request.CreateCourseRequest;
 import com.firom.lms.entRepo.Course;
 
 import java.util.List;
 
 public interface CourseService {
-    CourseResponse createCourse(SaveCourseRequest request);
+    CourseResponse createCourse(CreateCourseRequest request);
 
     CourseResponse getCourseById(Integer courseId);
 
@@ -15,7 +15,7 @@ public interface CourseService {
 
     void deleteCourseById(Integer courseId);
 
-    CourseResponse updateCourse(Integer courseId, SaveCourseRequest request);
+    CourseResponse updateCourse(Integer courseId, CreateCourseRequest request);
 
     Course getCourseEntityById(Integer courseId);
 }

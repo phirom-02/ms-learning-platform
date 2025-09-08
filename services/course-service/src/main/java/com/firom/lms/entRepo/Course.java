@@ -1,9 +1,10 @@
 package com.firom.lms.entRepo;
 
+import com.firom.lms.constants.CourseStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,17 +16,23 @@ import java.util.List;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String title;
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @Enumerated(EnumType.STRING)
+    private CourseStatus status;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
-    private List<Lesson> lessons;
+    private UUID instructorId;
+
+// Will be added back later
+//    @ManyToOne
+//    @JoinColumn(name = "category_id")
+//    private Category category;
+//
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
+//    private List<Lesson> lessons;
 }
