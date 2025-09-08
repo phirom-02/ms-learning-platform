@@ -1,14 +1,13 @@
 package com.firom.authservice.services;
 
-import com.nimbusds.jose.jwk.RSAKey;
-import com.nimbusds.jwt.JWTClaimsSet;
+import org.springframework.security.oauth2.jwt.Jwt;
 
 import java.util.Map;
 import java.util.function.Function;
 
 public interface JwtService {
 
-    RSAKey getRsaKey();
+//    RSAKey getRsaKey();
 
     String generateToken(String subject, Map<String, Object> claims, long ttlSeconds);
 
@@ -16,7 +15,7 @@ public interface JwtService {
 
     Map<String, Object> getClaims(String token);
 
-    <T> T extractClaim(String token, Function<JWTClaimsSet, T> claimsResolver);
+    <T> T extractClaim(String token, Function<Jwt, T> claimsResolver);
 
     <T> T extractClaim(String token, String claimName, Class<T> clazz);
 

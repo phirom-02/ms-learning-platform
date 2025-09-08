@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement user dynamic filtering">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/user-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/src/main/resources/configurations/user-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/UserServiceApplication.java" afterDir="false" />
-    </list>
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="enhance: leverage jwt sdk provided by OAuth2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,6 +144,7 @@
     &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.CourseApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CourseServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.DiscoveryApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.IdpServiceApplication.executor&quot;: &quot;Run&quot;,
@@ -254,9 +249,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CourseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="CourseServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="course-service.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.lms.CourseApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.lms.CourseServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -363,7 +358,8 @@
       <workItem from="1757227911813" duration="10146000" />
       <workItem from="1757254872522" duration="3323000" />
       <workItem from="1757258551742" duration="7756000" />
-      <workItem from="1757293082727" duration="138000" />
+      <workItem from="1757293082727" duration="20292000" />
+      <workItem from="1757317521549" duration="338000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
@@ -597,7 +593,71 @@
       <option name="project" value="LOCAL" />
       <updated>1757266276688</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="feat: change db of user-service from MongoDB to PostgreSQL and add UserSpecification for more dynamic querying and pagination">
+      <option name="closed" value="true" />
+      <created>1757299659025</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1757299659025</updated>
+    </task>
+    <task id="LOCAL-00031" summary="refactor: define concrete type in UserServiceImpl instead of using var">
+      <option name="closed" value="true" />
+      <created>1757299931960</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1757299931960</updated>
+    </task>
+    <task id="LOCAL-00032" summary="refactor: reduce the scope of course-service">
+      <option name="closed" value="true" />
+      <created>1757302939158</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1757302939158</updated>
+    </task>
+    <task id="LOCAL-00033" summary="refactor: reduce the scope of course-service">
+      <option name="closed" value="true" />
+      <created>1757305123398</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1757305123398</updated>
+    </task>
+    <task id="LOCAL-00034" summary="refactor: reduce the scope of course-service">
+      <option name="closed" value="true" />
+      <created>1757305145843</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1757305145843</updated>
+    </task>
+    <task id="LOCAL-00035" summary="feat: reduce more scope of the course-service and implement course jpa specification">
+      <option name="closed" value="true" />
+      <created>1757313811933</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1757313811933</updated>
+    </task>
+    <task id="LOCAL-00036" summary="feat: reduce more scope of the course-service and implement course jpa specification">
+      <option name="closed" value="true" />
+      <created>1757313816536</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1757313816536</updated>
+    </task>
+    <task id="LOCAL-00037" summary="enhance: leverage jwt sdk provided by OAuth2">
+      <option name="closed" value="true" />
+      <created>1757317772049</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1757317772049</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,8 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: implement lesson CRUD features" />
-    <MESSAGE value="feat: implement authorization server in auth-service module" />
     <MESSAGE value="feat: implement token rotation" />
     <MESSAGE value="feat: work on Redis configuration and refresh token persistence" />
     <MESSAGE value="feat: implement logout feature" />
@@ -637,7 +695,12 @@
     <MESSAGE value="refactor: remove unnecessary endpoints from user-service" />
     <MESSAGE value="refactor: remove unnecessary endpoints" />
     <MESSAGE value="feat: implement user dynamic filtering" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement user dynamic filtering" />
+    <MESSAGE value="feat: change db of user-service from MongoDB to PostgreSQL and add UserSpecification for more dynamic querying and pagination" />
+    <MESSAGE value="refactor: define concrete type in UserServiceImpl instead of using var" />
+    <MESSAGE value="refactor: reduce the scope of course-service" />
+    <MESSAGE value="feat: reduce more scope of the course-service and implement course jpa specification" />
+    <MESSAGE value="enhance: leverage jwt sdk provided by OAuth2" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance: leverage jwt sdk provided by OAuth2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -646,6 +709,11 @@
           <url>file://$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/configs/FeignConfig.java</url>
           <line>13</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/controllers/UserInternalController.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

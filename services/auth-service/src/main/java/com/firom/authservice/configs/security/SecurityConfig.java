@@ -1,10 +1,5 @@
 package com.firom.authservice.configs.security;
 
-import com.firom.authservice.utils.RSAKeyUtil;
-import com.nimbusds.jose.jwk.JWKSet;
-import com.nimbusds.jose.jwk.RSAKey;
-import com.nimbusds.jose.jwk.source.JWKSource;
-import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,13 +18,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -64,7 +59,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtClaimsToHeaderFilter claimsToHeaderFilter) throws Exception {
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http,
+            JwtClaimsToHeaderFilter claimsToHeaderFilter,
+            JwtDecoder jwtDecoder,
+            JwtAuthenticationConverter jwtAuthenticationConverter
+    ) throws Exception {
         OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = OAuth2AuthorizationServerConfigurer
                 .authorizationServer();
 
@@ -86,23 +86,14 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(jwt -> jwt.decoder(jwtDecoder()))
+                        .jwt(jwt -> jwt.decoder(jwtDecoder)
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter)
+                        )
                 );
-        ;
 
         http.addFilterAfter(claimsToHeaderFilter, BearerTokenAuthenticationFilter.class);
 
         return http.build();
-    }
-
-    @Bean
-    public JwtDecoder jwtDecoder() {
-        try {
-            RSAKey rsaKey = RSAKeyUtil.loadFromPem();
-            return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Bean
@@ -125,24 +116,14 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JWKSource<SecurityContext> jwkSource() {
-        try {
-            RSAKey rsaKey = RSAKeyUtil.loadFromPem(); // your util should load private+public
-            JWKSet jwkSet = new JWKSet(rsaKey);
-            return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to load RSA key", e);
-        }
-    }
-
-    @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         String URL_PREFIX = "/api/v1/auth/oauth2";
 
         return AuthorizationServerSettings.builder()
                 .issuer("http://localhost:8083")
-                .tokenEndpoint(URL_PREFIX + "/token")                        // Token endpoint
+                .tokenEndpoint(URL_PREFIX + "/token")                       // Token endpoint
                 .jwkSetEndpoint(URL_PREFIX + "/.well-known/jwks.json")      // JWKS endpoint
                 .build();
     }
+
 }

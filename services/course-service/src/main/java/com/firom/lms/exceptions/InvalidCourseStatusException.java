@@ -1,4 +1,4 @@
-package com.firom.lms;
+package com.firom.lms.exceptions;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

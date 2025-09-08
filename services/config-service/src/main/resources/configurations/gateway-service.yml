@@ -14,7 +14,9 @@ spring:
             - id: course-service
               uri: lb:http://COURSE-SERVICE
               predicates:
-                - Path=/api/v1/courses/**
+                - Path=/api/v1/courses/**,
+                - Path=/api/v1/instructor/courses/**,
+                - Path=/api/v1/admin/courses/**
             - id: auth-service
               uri: lb:http://AUTH-SERVICE
               predicates:

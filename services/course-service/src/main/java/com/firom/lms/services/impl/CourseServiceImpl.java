@@ -1,6 +1,6 @@
 package com.firom.lms.services.impl;
 
-import com.firom.lms.InvalidCourseStatusException;
+import com.firom.lms.exceptions.InvalidCourseStatusException;
 import com.firom.lms.constants.CourseStatus;
 import com.firom.lms.dto.mapper.CourseMapper;
 import com.firom.lms.dto.request.CreateCourseRequest;
