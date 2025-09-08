@@ -1,9 +1,12 @@
 create table if not exists course
 (
-    id          uuid         not null primary key,
-    title       varchar(255) not null,
-    description varchar(255) not null,
-    status      varchar(50)  not null
+    id            uuid         not null primary key,
+    title         varchar(255) not null,
+    description   varchar(255) not null,
+    status        varchar(50)  not null,
+    instructor_id uuid         not null,
+    created_at    timestamp with time zone,
+    updated_at    timestamp with time zone
 );
 
 create sequence if not exists course_seq increment by 50;

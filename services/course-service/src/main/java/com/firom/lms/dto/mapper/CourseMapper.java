@@ -1,7 +1,7 @@
 package com.firom.lms.dto.mapper;
 
 import com.firom.lms.constants.CourseStatus;
-import com.firom.lms.dto.request.CourseResponse;
+import com.firom.lms.dto.response.CourseResponse;
 import com.firom.lms.dto.request.CreateCourseRequest;
 import com.firom.lms.entRepo.Course;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ public class CourseMapper {
         return course;
     }
 
-    public CourseResponse EntityToCourseResponse(Course course) {
+    public CourseResponse entityToCourseResponse(Course course) {
         return CourseResponse.builder()
                 .id(course.getId())
                 .title(course.getTitle())

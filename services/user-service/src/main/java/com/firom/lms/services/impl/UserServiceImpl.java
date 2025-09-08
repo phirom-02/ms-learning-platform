@@ -48,9 +48,9 @@ public class UserServiceImpl implements UserService {
             String roles
     ) {
         // Parse roles
-        List<UserRoles> mappedRoles;
+        List<UserRoles> parsedRoles;
         try {
-            mappedRoles = roles == null
+            parsedRoles = roles == null
                     ? null
                     : Arrays.stream(roles.split(","))
                     .map(String::trim)
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
                 .and(UserSpecification.emailContains(email))
                 .and(UserSpecification.firstNameContains(firstName))
                 .and(UserSpecification.lastNameContains(lastName))
-                .and(UserSpecification.hasAnyRole(mappedRoles));
+                .and(UserSpecification.hasAnyRole(parsedRoles));
 
         // Query users data + pagination
         Page<User> users = userRepository.findAll(spec, pageable);

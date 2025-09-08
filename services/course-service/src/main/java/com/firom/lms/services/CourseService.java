@@ -1,21 +1,20 @@
 package com.firom.lms.services;
 
-import com.firom.lms.dto.request.CourseResponse;
+import com.firom.lms.dto.response.CourseResponse;
 import com.firom.lms.dto.request.CreateCourseRequest;
 import com.firom.lms.entRepo.Course;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface CourseService {
     CourseResponse createCourse(CreateCourseRequest request);
 
-    CourseResponse getCourseById(Integer courseId);
+    CourseResponse getCourseById(String courseId);
 
-    List<CourseResponse> getAllCourses();
+    void deleteCourseById(String courseId);
 
-    void deleteCourseById(Integer courseId);
+    CourseResponse updateCourse(String courseId, CreateCourseRequest request);
 
-    CourseResponse updateCourse(Integer courseId, CreateCourseRequest request);
+    Course getCourseEntityById(String courseId);
 
-    Course getCourseEntityById(Integer courseId);
+    Page<CourseResponse> getAllCourses(int page, int size, String sort, String title, String instructorId, String status);
 }
