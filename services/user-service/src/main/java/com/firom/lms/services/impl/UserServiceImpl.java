@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User createUser(CreateUserRequest request) {
         try {
-            var userToCreate = userMapper.createUserRequestToEntity(request);
+            User userToCreate = userMapper.createUserRequestToEntity(request);
             return userRepository.save(userToCreate);
         } catch (Exception e) {
             throw new CustomDuplicateKeyException("This email in used: " + request.getEmail());
@@ -103,9 +103,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse updateUser(String userId, UpdateUserRequest request) {
-        var user = getUserEntityById(userId);
-        var userToUpdate = userMapper.updateUserRequestToEntity(request, user);
-        var updatedUser = userRepository.save(userToUpdate);
+        User user = getUserEntityById(userId);
+        User userToUpdate = userMapper.updateUserRequestToEntity(request, user);
+        User updatedUser = userRepository.save(userToUpdate);
         return userMapper.entityToUserResponse(updatedUser);
     }
 
@@ -129,14 +129,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updatePassword(String userId, UpdatePasswordRequest request) {
-        var user = getUserEntityById(userId);
+        User user = getUserEntityById(userId);
         user.setPassword(request.getPassword());
         return userRepository.save(user);
     }
 
     @Override
     public User setUserEnableStatus(String userId, boolean value) {
-        var user = getUserEntityById(userId);
+        User user = getUserEntityById(userId);
         user.setEnabled(value);
         return userRepository.save(user);
     }
