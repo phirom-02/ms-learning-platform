@@ -13,11 +13,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateCourseRequest {
-    private UUID id;
-
     @NotEmpty(message = "Course title is required")
     private String title;
 
-    @NotEmpty(message = "Description title is required")
+    @NotEmpty(message = "Description is required")
     private String description;
+
+    private UUID instructorId;
 }

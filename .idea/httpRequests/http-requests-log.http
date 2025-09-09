@@ -1,3 +1,30 @@
+GET http://localhost:8084/api/v1/courses/test
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.7
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+Cookie: JSESSIONID=434AD13344A7B2B0508C4FE5213B06AC
+content-length: 0
+
+###
+
+GET http://localhost:8084/api/v1/courses/test
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.7
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+Cookie: JSESSIONID=434AD13344A7B2B0508C4FE5213B06AC
+content-length: 0
+
+###
+
+GET http://localhost:8084/api/v1/courses
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.7
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+Cookie: JSESSIONID=434AD13344A7B2B0508C4FE5213B06AC
+content-length: 0
+
+###
+
 POST http://localhost:8083/api/v1/auth/login
 User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.7
 Accept-Encoding: br, deflate, gzip, x-gzip
