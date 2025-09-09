@@ -71,7 +71,7 @@ public class JwtConfig {
                 roles = Collections.emptyList();
             }
             return roles.stream()
-                    .map(SimpleGrantedAuthority::new)
+                    .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                     .collect(Collectors.toList());
         });
         return converter;

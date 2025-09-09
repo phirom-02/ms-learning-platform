@@ -27,10 +27,6 @@ public class JwtClaimsToHeaderFilter extends OncePerRequestFilter {
 
         if (authentication instanceof JwtAuthenticationToken jwtAuthToken) {
             String token = jwtAuthToken.getToken().getTokenValue();
-        }
-
-        if (authentication instanceof JwtAuthenticationToken jwtAuthToken) {
-            String token = jwtAuthToken.getToken().getTokenValue();
 
             String userId = jwtService.extractClaim(token, "userId", String.class);
             String email = jwtService.extractClaim(token, "email", String.class);
@@ -46,6 +42,8 @@ public class JwtClaimsToHeaderFilter extends OncePerRequestFilter {
             request.setAttribute("email", email);
             request.setAttribute("roles", String.join(",", roles));
         }
+
+        filterChain.doFilter(request, response);
     }
 
     private boolean isValidRole(String role) {
