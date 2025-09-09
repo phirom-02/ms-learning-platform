@@ -14,20 +14,6 @@ services:
     networks:
       - ms-learning-platform-net
 
-  # MongoDB
-  mongodb:
-    image: mongo
-    container_name: ms-learning-platform_mongo
-    ports:
-      - 27017:27017
-    volumes:
-      - mongo:/data
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=change_me!
-    networks:
-      - ms-learning-platform-net
-
   # RabbitMQ
   rabbitmq:
     image: rabbitmq:3.13.7-management
@@ -86,11 +72,10 @@ networks:
 # -----------------
 volumes:
   postgres:
-  mongo:
   rabbitmq_data:
   redis_data:
 
 # TODO:
 # [x] Configure Keycloak container
 # [ ] Configure Zipkin container
-# [ ] Configure Maildev container
+# [x] Configure Maildev container

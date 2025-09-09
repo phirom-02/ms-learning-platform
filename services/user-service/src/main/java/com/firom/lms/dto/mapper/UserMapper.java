@@ -4,7 +4,7 @@ import com.firom.lms.dto.request.CreateUserRequest;
 import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
-import com.firom.lms.entRepo.UserRoles;
+import com.firom.lms.constants.UserRoles;
 import com.firom.lms.exceptions.InvalidRoleException;
 import org.springframework.stereotype.Component;
 

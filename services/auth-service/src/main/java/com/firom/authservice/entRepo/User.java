@@ -1,5 +1,6 @@
 package com.firom.authservice.entRepo;
 
+import com.firom.authservice.contants.UserRoles;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

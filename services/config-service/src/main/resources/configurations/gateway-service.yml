@@ -15,12 +15,24 @@ spring:
               uri: lb:http://COURSE-SERVICE
               predicates:
                 - Path=/api/v1/courses/**
-                - Path=/api/v1/instructor/courses/**
-                - Path=/api/v1/admin/courses/**
             - id: auth-service
               uri: lb:http://AUTH-SERVICE
               predicates:
                 - Path=/api/v1/auth/**
+            - id: enrollment-service
+              uri: lb:http://ENROLLMENT-SERVICE
+              predicates:
+                - Path=/api/v1/enrollments
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway, routes
 
 server:
   port: 8081
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

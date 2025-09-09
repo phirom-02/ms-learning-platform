@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/enrollment
+    username: admin
+    password: change_me!
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  remotes:
+    user-url: http://localhost:8081/api/v1/users/internal
+    course-url: http://localhost:8081/api/v1/courses/internal
+  oauth2:
+    enrollment-service-client:
+      client-id: enrollment-server-client
+      client-secret: 7b8059230e0f34af3a6909ab8881f793
+
+server:
+  port:
+    8086

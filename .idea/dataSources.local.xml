@@ -25,17 +25,6 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="lms mongo" uuid="d0ff658b-e4cf-42c7-b9a9-2f2a577c5b9f">
-      <database-info product="Mongo DB" version="8.0.12" jdbc-version="4.2" driver-name="MongoDB JDBC Driver" driver-version="1.20" dbms="MONGO" exact-version="8.0.12" exact-driver-version="1.20" />
-      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>admin</user-name>
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" qname="user" />
-        </introspection-scope>
-      </schema-mapping>
-    </data-source>
     <data-source name="lms redis" uuid="e7f510b6-bbfa-434f-a487-2e5f6766c3f3">
       <database-info product="Redis Standalone" version="8.2.1" jdbc-version="4.2" driver-name="Redis JDBC Driver" driver-version="1.5" dbms="REDIS" exact-version="8.2.1" exact-driver-version="1.5" />
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />

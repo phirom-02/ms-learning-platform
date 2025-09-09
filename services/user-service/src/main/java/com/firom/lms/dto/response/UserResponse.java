@@ -1,6 +1,6 @@
 package com.firom.lms.dto.response;
 
-import com.firom.lms.entRepo.UserRoles;
+import com.firom.lms.constants.UserRoles;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

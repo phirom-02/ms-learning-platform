@@ -1,6 +1,6 @@
 package com.firom.authservice.configs.security;
 
-import com.firom.authservice.entRepo.UserRoles;
+import com.firom.authservice.contants.UserRoles;
 import com.firom.authservice.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -50,7 +50,7 @@ public class JwtClaimsToHeaderFilter extends OncePerRequestFilter {
 
     private boolean isValidRole(String role) {
         try {
-            UserRoles.valueOf(role); // throws IllegalArgumentException if invalid
+            UserRoles.valueOf(role);
             return true;
         } catch (IllegalArgumentException e) {
             return false;

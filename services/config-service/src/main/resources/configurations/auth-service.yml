@@ -18,7 +18,7 @@ spring:
 application:
   email-verification-url: http://localhost:8081/api/v1/auth/verify-email
   remotes:
-    user-url: http://localhost:8081/api/v1/users
+    user-url: http://localhost:8081/api/v1/users/internal
   jwt:
     access-token-validity: 14400 # 2 hours
     refresh-token-validity: 14400 # 2 hours

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         name = "user-service",
-        url = "${application.remotes.user-url}/internal"
+        url = "${application.remotes.user-url}"
 )
 public interface UserClient {
 

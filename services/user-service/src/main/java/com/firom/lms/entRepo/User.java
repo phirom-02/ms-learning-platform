@@ -1,5 +1,6 @@
 package com.firom.lms.entRepo;
 
+import com.firom.lms.constants.UserRoles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

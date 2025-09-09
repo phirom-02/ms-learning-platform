@@ -27,7 +27,6 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers("/api/v1/instructor/courses/**").hasRole("INSTRUCTOR")
-//                        .requestMatchers("/api/v1/admin/courses/**").hasRole(UserRoles.ADMIN.name())
                                 .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2

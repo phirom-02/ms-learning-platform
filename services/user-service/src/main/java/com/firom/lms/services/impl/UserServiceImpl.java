@@ -7,7 +7,7 @@ import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
 import com.firom.lms.entRepo.UserRepository;
-import com.firom.lms.entRepo.UserRoles;
+import com.firom.lms.constants.UserRoles;
 import com.firom.lms.entRepo.UserSpecification;
 import com.firom.lms.exceptions.InvalidRoleException;
 import com.firom.lms.services.UserService;

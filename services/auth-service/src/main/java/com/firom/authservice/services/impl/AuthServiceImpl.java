@@ -9,7 +9,7 @@ import com.firom.authservice.dto.response.SignUpResponse;
 import com.firom.authservice.dto.response.UserResponse;
 import com.firom.authservice.entRepo.RefreshToken;
 import com.firom.authservice.entRepo.User;
-import com.firom.authservice.entRepo.UserRoles;
+import com.firom.authservice.contants.UserRoles;
 import com.firom.authservice.exceptions.*;
 import com.firom.authservice.producers.AuthProducer;
 import com.firom.authservice.producers.EmailVerificationMessage;

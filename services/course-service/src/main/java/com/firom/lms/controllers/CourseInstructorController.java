@@ -56,8 +56,11 @@ public class CourseInstructorController {
     }
 
     @GetMapping("/{course-id}")
-    private ResponseEntity<ApiResponse<CourseResponse>> getCourseById(@PathVariable("course-id") UUID courseId) {
-        ApiResponse<CourseResponse> response = new ApiResponse<>(courseService.getCourseById(courseId));
+    private ResponseEntity<ApiResponse<CourseResponse>> getCourseById(
+            @PathVariable("course-id") UUID courseId,
+            @RequestAttribute("userId") UUID instructorId
+    ) {
+        ApiResponse<CourseResponse> response = new ApiResponse<>(courseService.getCourseByInstructor(courseId, instructorId));
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(response);
