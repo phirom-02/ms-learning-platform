@@ -3,6 +3,7 @@ package com.firom.authservice.configs.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,6 +16,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -34,12 +38,14 @@ import java.util.UUID;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Value("${application.remotes.oauth2-token-url}")
+    private String oauth2TokenUrl;
 
-    @Value("${application.oauth2.client-id}")
-    private String clientId;
+    @Value("${application.oauth2.auth-service-client.client-id}")
+    private String authServiceClientId;
 
-    @Value("${application.oauth2.client-secret}")
-    private String clientSecret;
+    @Value("${application.oauth2.auth-service-client.client-secret}")
+    private String authServiceClientSecret;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -100,8 +106,8 @@ public class SecurityConfig {
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient appClient = RegisteredClient
                 .withId(UUID.randomUUID().toString())
-                .clientId(clientId)
-                .clientSecret(passwordEncoder().encode(clientSecret))
+                .clientId(authServiceClientId)
+                .clientSecret(passwordEncoder().encode(authServiceClientSecret))
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
@@ -121,9 +127,23 @@ public class SecurityConfig {
 
         return AuthorizationServerSettings.builder()
                 .issuer("http://localhost:8083")
-                .tokenEndpoint(URL_PREFIX + "/token")                       // Token endpoint
-                .jwkSetEndpoint(URL_PREFIX + "/.well-known/jwks.json")      // JWKS endpoint
+                .tokenEndpoint(URL_PREFIX + "/token")
+                .jwkSetEndpoint(URL_PREFIX + "/.well-known/jwks.json")
                 .build();
     }
 
+    @Bean
+    @Primary
+    public ClientRegistrationRepository clientRegistrationRepository() {
+        ClientRegistration clientRegistration = ClientRegistration
+                .withRegistrationId(authServiceClientId)
+                .tokenUri(oauth2TokenUrl)
+                .clientId(authServiceClientId)
+                .clientSecret(authServiceClientSecret)
+                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                .scope("read", "write")
+                .build();
+
+        return new InMemoryClientRegistrationRepository(clientRegistration);
+    }
 }

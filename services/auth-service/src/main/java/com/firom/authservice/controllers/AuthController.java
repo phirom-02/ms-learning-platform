@@ -8,7 +8,6 @@ import com.firom.authservice.dto.response.ApiResponse;
 import com.firom.authservice.dto.response.AuthenticationResponse;
 import com.firom.authservice.dto.response.SignUpResponse;
 import com.firom.authservice.dto.response.UserResponse;
-import com.firom.authservice.producers.AuthProducer;
 import com.firom.authservice.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-    private final AuthProducer authProducer;
 
     /**
      * Signup endpoint

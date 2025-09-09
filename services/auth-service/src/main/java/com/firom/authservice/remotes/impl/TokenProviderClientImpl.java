@@ -16,11 +16,11 @@ public class TokenProviderClientImpl implements TokenProviderClient {
     @Value("${application.remotes.oauth2-token-url}")
     private String oauth2TokenUrl;
 
-    @Value("${application.oauth2.client-id}")
-    private String clientId;
+    @Value("${application.oauth2.auth-service-client.client-id}")
+    private String authServiceClientId;
 
-    @Value("${application.oauth2.client-secret}")
-    private String clientSecret;
+    @Value("${application.oauth2.auth-service-client.client-secret}")
+    private String authServiceClientSecret;
 
     private final OkHttpClient client = new OkHttpClient();
 
@@ -28,8 +28,8 @@ public class TokenProviderClientImpl implements TokenProviderClient {
     public String getAccessToken() {
         FormBody body = new FormBody.Builder()
                 .add("grant_type", "client_credentials")
-                .add("client_id", clientId)
-                .add("client_secret", clientSecret)
+                .add("client_id", authServiceClientId)
+                .add("client_secret", authServiceClientSecret)
                 .add("scope", "read write")
                 .build();
 
