@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement basic course enrollment">
-      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/request/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/request/UpdateUserRequest.java" afterDir="false" />
+    <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="refactor: change ID datatype from String to UUID for user-service">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/services/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +229,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EnrollmentServiceApplication">
+  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
     <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="auth-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.firom.authservice.AuthServiceApplication" />
@@ -760,7 +764,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757412596886</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="refactor: change ID datatype from String to UUID for user-service">
+      <option name="closed" value="true" />
+      <created>1757506493199</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1757506493199</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -778,7 +790,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: enable secure service-to-service communication using OAuth2 client_credentials&#10;&#10;- Fetch access tokens via OkHttp using client_credentials grant&#10;- Automatically attach tokens to all Feign client requests via RequestInterceptor&#10;- Enables secure internal service-to-service communication" />
     <MESSAGE value="feat: implement basic account email verification and account enable status update" />
     <MESSAGE value="feat: demo setup message queue rabbit mq" />
     <MESSAGE value="feat: implement email verification featuer" />
@@ -803,6 +814,7 @@
     <MESSAGE value="feat: add more CRUD to course-service" />
     <MESSAGE value="feat: more update on security" />
     <MESSAGE value="feat: implement basic course enrollment" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement basic course enrollment" />
+    <MESSAGE value="refactor: change ID datatype from String to UUID for user-service" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: change ID datatype from String to UUID for user-service" />
   </component>
 </project>
