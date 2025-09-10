@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement basic course enrollment">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/producers/AuthProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/src/main/java/com/firom/authservice/producers/AuthProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms/exception/CourseEnrollmentException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms/exception/EnrollmentException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms/services/impl/EnrollmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms/services/impl/EnrollmentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/AuthRabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/AuthRabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/configs/rabbitmq/RabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/constants/EmailTemplates.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/constants/EmailTemplates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/producers/AuthNotificationProducer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/services/impl/AuthNotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/firom/lms/services/impl/AuthNotificationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/enrollment-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/enrollment-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +88,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "phirom-02"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:phirom-02/ms-learning-platform.git",
+    "accountId": "ffb5392f-6856-4c1f-ae95-8ecbb03b71d4"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
@@ -108,80 +114,80 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker-compose.yml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.redis-commander: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.AuthServiceApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build auth-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build config-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build course-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build discovery-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build enrollment-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build idp-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build notification-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build user-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.auth-service [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.auth-service [clean build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.auth-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.course-service [clean build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.gateway-service [clean build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.idp-service [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.idp-service [clean build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.idp-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.notification-service [clean build].executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.AuthServiceApplication | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.AuthServiceApplication | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.CourseServiceApplication | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.CourseServiceApplication | #2.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AuthServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CourseApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CourseServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiscoveryApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EnrollmentServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.IdpServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/phirom/Programming/Assignments/ms-learning-platform/services/enrollment-service/src/main/java/com/firom/lms/entRepo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3321839&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yml.keycloak: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.redis-commander: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.AuthServiceApplicationTests.executor": "Run",
+    "Gradle.Build auth-service.executor": "Run",
+    "Gradle.Build config-service.executor": "Run",
+    "Gradle.Build course-service.executor": "Run",
+    "Gradle.Build discovery-service.executor": "Run",
+    "Gradle.Build enrollment-service.executor": "Run",
+    "Gradle.Build gateway-service.executor": "Run",
+    "Gradle.Build idp-service.executor": "Run",
+    "Gradle.Build notification-service.executor": "Run",
+    "Gradle.Build user-service.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.auth-service [build].executor": "Run",
+    "Gradle.auth-service [clean build].executor": "Run",
+    "Gradle.auth-service [clean].executor": "Run",
+    "Gradle.course-service [clean build].executor": "Run",
+    "Gradle.gateway-service [clean build].executor": "Run",
+    "Gradle.idp-service [build].executor": "Run",
+    "Gradle.idp-service [clean build].executor": "Run",
+    "Gradle.idp-service [clean].executor": "Run",
+    "Gradle.notification-service [clean build].executor": "Run",
+    "HTTP Request.AuthServiceApplication | #1.executor": "Run",
+    "HTTP Request.AuthServiceApplication | #2.executor": "Run",
+    "HTTP Request.CourseServiceApplication | #1.executor": "Run",
+    "HTTP Request.CourseServiceApplication | #2.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AuthServiceApplication.executor": "Run",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.ConfigServiceApplication.executor": "Run",
+    "Spring Boot.CourseApplication.executor": "Run",
+    "Spring Boot.CourseServiceApplication.executor": "Run",
+    "Spring Boot.DiscoveryApplication.executor": "Run",
+    "Spring Boot.EnrollmentServiceApplication.executor": "Run",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
+    "Spring Boot.IdpServiceApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
+    "Spring Boot.UserApplication.executor": "Run",
+    "Spring Boot.UserServiceApplication.executor": "Run",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/phirom/Programming/Assignments/ms-learning-platform/services/enrollment-service/src/main/java/com/firom/lms/entRepo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3321839",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;,
-      &quot;mongo&quot;,
-      &quot;redis&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql",
+      "mongo",
+      "redis"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -387,6 +393,7 @@
       <workItem from="1757466694632" duration="23000" />
       <workItem from="1757466724680" duration="256000" />
       <workItem from="1757466990347" duration="153000" />
+      <workItem from="1757475993082" duration="139000" />
     </task>
     <task id="LOCAL-00001" summary="feat: implement lesson CRUD features">
       <option name="closed" value="true" />
