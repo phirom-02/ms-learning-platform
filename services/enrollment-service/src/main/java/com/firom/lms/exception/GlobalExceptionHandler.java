@@ -52,8 +52,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(new ErrorResponse(error));
     }
 
-    @ExceptionHandler(CourseEnrollmentException.class)
-    public ResponseEntity<ErrorResponse> handleCourseEnrollmentException(CourseEnrollmentException e) {
+    @ExceptionHandler(EnrollmentException.class)
+    public ResponseEntity<ErrorResponse> handleCourseEnrollmentException(EnrollmentException e) {
         Map<String, Object> error = new HashMap<>();
         error.put("message", e.getMessage());
 

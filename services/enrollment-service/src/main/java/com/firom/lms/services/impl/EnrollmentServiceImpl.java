@@ -8,13 +8,14 @@ import com.firom.lms.entRepo.Course;
 import com.firom.lms.entRepo.Enrollment;
 import com.firom.lms.entRepo.EnrollmentRepository;
 import com.firom.lms.entRepo.User;
-import com.firom.lms.exception.CourseEnrollmentException;
+import com.firom.lms.exception.EnrollmentException;
+import com.firom.lms.producers.EnrollmentMessage;
+import com.firom.lms.producers.EnrollmentProducer;
 import com.firom.lms.remotes.client.CourseClient;
 import com.firom.lms.remotes.client.UserClient;
 import com.firom.lms.services.EnrollmentService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,35 +26,43 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EnrollmentServiceImpl implements EnrollmentService {
 
-    private static final Logger log = LoggerFactory.getLogger(EnrollmentServiceImpl.class);
     private final EnrollmentMapper enrollmentMapper;
     private final EnrollmentRepository enrollmentRepository;
     private final CourseClient courseClient;
     private final UserClient userClient;
+    private final EnrollmentProducer enrollmentProducer;
 
     @Transactional
     @Override
     public EnrollmentResponse enrollCourse(UUID studentId, EnrollmentRequest request) {
+        request.setStudentId(studentId);
         // Check if student already enrolled the course
         Optional<Enrollment> retrievedEnrollment = enrollmentRepository.findByStudentIdAndAndCourseId(studentId, request.getCourseId());
         if (retrievedEnrollment.isPresent()) {
-            throw new CourseEnrollmentException("User already enrolled the course");
+            throw new EnrollmentException("User already enrolled the course");
         }
 
-        // Retrieve user
-        ResponseEntity<ApiResponse<User>> getUserByIdResponse = userClient.getUserById(studentId);
-        User user = Objects.requireNonNull(getUserByIdResponse.getBody()).getData();
+        // Retrieve user(student)
+        ResponseEntity<ApiResponse<User>> studentResponse = userClient.getUserById(studentId);
+        User student = Objects.requireNonNull(studentResponse.getBody()).getData();
 
         // Retrieve course
         ResponseEntity<ApiResponse<Course>> getCourseByIdResponse = courseClient.getCourseById(request.getCourseId());
         Course course = Objects.requireNonNull(getCourseByIdResponse.getBody()).getData();
 
+        // Retrieve instructor
+
+
+        ResponseEntity<ApiResponse<User>> instructorResponse = userClient.getUserById(request.getStudentId());
+        User instructor = instructorResponse.getBody().getData();
+
         // Set studentId
-        request.setStudentId(user.getId());
+        request.setStudentId(student.getId());
         request.setCourseId(course.getId());
 
         // Map enrollment request to entity
@@ -61,6 +70,16 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         // Persist to db
         Enrollment enrollment = enrollmentRepository.save(enrollmentToSave);
+
+        // Send enrollment notice to Notification service
+        enrollmentProducer.sendEnrollmentNotice(
+                EnrollmentMessage.builder()
+                        .courseTitle(course.getTitle())
+                        .instructorUsername(instructor.getUsername())
+                        .studentUsername(student.getUsername())
+                        .studentEmail(student.getEmail())
+                        .build()
+        );
 
         // Map then return
         return enrollmentMapper.entityToEnrollmentResponse(enrollment);

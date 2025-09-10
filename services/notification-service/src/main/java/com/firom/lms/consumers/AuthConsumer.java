@@ -1,6 +1,5 @@
 package com.firom.lms.consumers;
 
-import com.firom.lms.configs.rabbitmq.AuthRabbitMQConfig;
 import com.firom.lms.services.AuthNotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +13,7 @@ public class AuthConsumer {
 
     private final AuthNotificationService authNotificationService;
 
-    @RabbitListener(queues = AuthRabbitMQConfig.EMAIL_VERIFICATION_QUEUE)
+    @RabbitListener(queues = "notification.email_verification.queue")
     public void consumeEmailVerification(EmailVerificationMessage message) {
         log.info("Received email verification message: {}", message);
         authNotificationService.sendEmailVerification(

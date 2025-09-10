@@ -17,15 +17,16 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
+@Service
 public class AuthNotificationServiceImpl implements AuthNotificationService {
 
     private final JavaMailSender mailSender;
     private final TemplateEngine templateEngine;
 
     @Async
+    @Override
     public void sendEmailVerification(
             String destinationEmail,
             String username,
@@ -49,12 +50,11 @@ public class AuthNotificationServiceImpl implements AuthNotificationService {
 
         try {
             // Set up html template
-            final String templateName = EmailTemplates.EMAIL_VERIFICATION.getTemplate();
+            String templateName = EmailTemplates.EMAIL_VERIFICATION.getTemplate();
             String htmlTemplate = templateEngine.process(templateName, context);
 
             // Set up message
             messageHelper.setSubject(EmailTemplates.EMAIL_VERIFICATION.getSubject());
-            messageHelper.setFrom("firom.khim@geekybyte.com");
             messageHelper.setText(htmlTemplate, true);
             messageHelper.setTo(destinationEmail);
 
