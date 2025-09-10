@@ -1,15 +1,15 @@
 package com.firom.lms.services.impl;
 
+import com.firom.lms.constants.UserRoles;
 import com.firom.lms.dto.mapper.UserMapper;
 import com.firom.lms.dto.request.CreateUserRequest;
 import com.firom.lms.dto.request.UpdatePasswordRequest;
-import com.firom.lms.dto.request.UpdateUserRequest;
 import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
 import com.firom.lms.entRepo.UserRepository;
-import com.firom.lms.constants.UserRoles;
 import com.firom.lms.entRepo.UserSpecification;
 import com.firom.lms.exceptions.InvalidRoleException;
+import com.firom.lms.exceptions.UsernameEmailDuplicationException;
 import com.firom.lms.services.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +32,15 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User createUser(CreateUserRequest request) {
+        // Check if email already occupied
+        if (isEmailOccupied(request.getEmail())) {
+            throw new UsernameEmailDuplicationException("This email address is already in use");
+        }
+
+        if (isUsernameOccupied(request.getUsername())) {
+            throw new UsernameEmailDuplicationException("This username is already in use");
+        }
+
         User userToCreate = userMapper.createUserRequestToEntity(request);
         return userRepository.save(userToCreate);
     }
@@ -97,20 +106,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse updateUser(UUID userId, UpdateUserRequest request) {
-        User user = getUserEntityById(userId);
-        User userToUpdate = userMapper.updateUserRequestToEntity(request, user);
-        User updatedUser = userRepository.save(userToUpdate);
-        return userMapper.entityToUserResponse(updatedUser);
-    }
-
-    @Override
-    public void deleteUserById(UUID userId) {
-        getUserEntityById(userId);
-        userRepository.deleteById(userId);
-    }
-
-    @Override
     public User getUserEntityByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("No user found with username: " + username));
@@ -134,5 +129,15 @@ public class UserServiceImpl implements UserService {
         User user = getUserEntityById(userId);
         user.setEnabled(value);
         return userRepository.save(user);
+    }
+
+    @Override
+    public boolean isEmailOccupied(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
+
+    @Override
+    public boolean isUsernameOccupied(String username) {
+        return userRepository.findByUsername(username).isPresent();
     }
 }
