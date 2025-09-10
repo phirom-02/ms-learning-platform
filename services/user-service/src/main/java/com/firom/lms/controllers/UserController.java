@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
@@ -41,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/{user-id}")
-    public ResponseEntity<ApiResponse<UserResponse>> getUser(@PathVariable(name = "user-id") String userId) {
+    public ResponseEntity<ApiResponse<UserResponse>> getUser(@PathVariable(name = "user-id") UUID userId) {
         var response = new ApiResponse<>(userService.getUserById(userId));
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

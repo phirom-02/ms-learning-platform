@@ -86,18 +86,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUserById(String userId) {
+    public UserResponse getUserById(UUID userId) {
         return userMapper.entityToUserResponse(getUserEntityById(userId));
     }
 
     @Override
-    public User getUserEntityById(String userId) {
-        return userRepository.findById(UUID.fromString(userId))
+    public User getUserEntityById(UUID userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("No user found with id: " + userId));
     }
 
     @Override
-    public UserResponse updateUser(String userId, UpdateUserRequest request) {
+    public UserResponse updateUser(UUID userId, UpdateUserRequest request) {
         User user = getUserEntityById(userId);
         User userToUpdate = userMapper.updateUserRequestToEntity(request, user);
         User updatedUser = userRepository.save(userToUpdate);
@@ -105,9 +105,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserById(String userId) {
+    public void deleteUserById(UUID userId) {
         getUserEntityById(userId);
-        userRepository.deleteById(UUID.fromString(userId));
+        userRepository.deleteById(userId);
     }
 
     @Override
@@ -123,14 +123,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updatePassword(String userId, UpdatePasswordRequest request) {
+    public User updatePassword(UUID userId, UpdatePasswordRequest request) {
         User user = getUserEntityById(userId);
         user.setPassword(request.getPassword());
         return userRepository.save(user);
     }
 
     @Override
-    public User setUserEnableStatus(String userId, boolean value) {
+    public User setUserEnableStatus(UUID userId, boolean value) {
         User user = getUserEntityById(userId);
         user.setEnabled(value);
         return userRepository.save(user);

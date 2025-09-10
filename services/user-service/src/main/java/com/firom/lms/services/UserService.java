@@ -7,7 +7,7 @@ import com.firom.lms.dto.response.UserResponse;
 import com.firom.lms.entRepo.User;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
+import java.util.UUID;
 
 public interface UserService {
     User createUser(CreateUserRequest request);
@@ -21,19 +21,19 @@ public interface UserService {
                                    String lastName,
                                    String roles);
 
-    UserResponse getUserById(String userId);
+    UserResponse getUserById(UUID userId);
 
-    User getUserEntityById(String userId);
+    User getUserEntityById(UUID userId);
 
-    UserResponse updateUser(String userId, UpdateUserRequest request);
+    UserResponse updateUser(UUID userId, UpdateUserRequest request);
 
-    void deleteUserById(String userId);
+    void deleteUserById(UUID userId);
 
     User getUserEntityByUsername(String username);
 
     User getUserEntityByEmail(String email);
 
-    User updatePassword(String userId, UpdatePasswordRequest request);
+    User updatePassword(UUID userId, UpdatePasswordRequest request);
 
-    User setUserEnableStatus(String userId, boolean value);
+    User setUserEnableStatus(UUID userId, boolean value);
 }

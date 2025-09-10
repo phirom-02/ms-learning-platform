@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/users/internal")
 @RequiredArgsConstructor
@@ -38,7 +40,7 @@ public class UserInternalController {
     }
 
     @GetMapping("/{user-id}")
-    public ResponseEntity<ApiResponse<User>> getUserById(@PathVariable(name = "user-id") String userId) {
+    public ResponseEntity<ApiResponse<User>> getUserById(@PathVariable(name = "user-id") UUID userId) {
         var response = new ApiResponse<>(userService.getUserEntityById(userId));
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
@@ -46,7 +48,7 @@ public class UserInternalController {
 
     @PatchMapping("/{user-id}/change-password")
     public ResponseEntity<ApiResponse<Void>> updatePassword(
-            @PathVariable(name = "user-id") String userId,
+            @PathVariable(name = "user-id") UUID userId,
             @RequestBody UpdatePasswordRequest request
     ) {
         userService.updatePassword(userId, request);
@@ -56,7 +58,7 @@ public class UserInternalController {
     }
 
     @PatchMapping("/{user-id}/enable")
-    public ResponseEntity<ApiResponse<Void>> enableUser(@PathVariable(name = "user-id") String userId) {
+    public ResponseEntity<ApiResponse<Void>> enableUser(@PathVariable(name = "user-id") UUID userId) {
         userService.setUserEnableStatus(userId, true);
         ApiResponse<Void> response = new ApiResponse<>(null);
         return ResponseEntity.status(HttpStatus.OK)
@@ -64,7 +66,7 @@ public class UserInternalController {
     }
 
     @PatchMapping("/{user-id}/disable")
-    public ResponseEntity<ApiResponse<Void>> disableUser(@PathVariable(name = "user-id") String userId) {
+    public ResponseEntity<ApiResponse<Void>> disableUser(@PathVariable(name = "user-id") UUID userId) {
         userService.setUserEnableStatus(userId, false);
         ApiResponse<Void> response = new ApiResponse<>(null);
         return ResponseEntity.status(HttpStatus.OK)

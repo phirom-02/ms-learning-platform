@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="feat: implement basic course enrollment">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/enrollment-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/enrollment-service/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/request/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/src/main/java/com/firom/lms/dto/request/UpdateUserRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,18 +85,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "phirom-02"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;phirom-02&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:phirom-02/ms-learning-platform.git",
-    "accountId": "ffb5392f-6856-4c1f-ae95-8ecbb03b71d4"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:phirom-02/ms-learning-platform.git&quot;,
+    &quot;accountId&quot;: &quot;ffb5392f-6856-4c1f-ae95-8ecbb03b71d4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
@@ -165,7 +162,7 @@
     "Spring Boot.UserApplication.executor": "Run",
     "Spring Boot.UserServiceApplication.executor": "Run",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "develop",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/phirom/Programming/Assignments/ms-learning-platform/services/enrollment-service/src/main/java/com/firom/lms/entRepo",
     "node.js.detected.package.eslint": "true",
