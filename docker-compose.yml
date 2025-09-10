@@ -74,8 +74,3 @@ volumes:
   postgres:
   rabbitmq_data:
   redis_data:
-
-# TODO:
-# [x] Configure Keycloak container
-# [ ] Configure Zipkin container
-# [x] Configure Maildev container
