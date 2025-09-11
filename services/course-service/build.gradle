@@ -37,6 +37,7 @@ dependencies {
     implementation 'org.flywaydb:flyway-core:11.11.2'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
     runtimeOnly 'org.flywaydb:flyway-database-postgresql:11.11.2'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'

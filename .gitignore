@@ -1,0 +1,6 @@
+# Global .gitignoree at root
+*.class
+*.log
+target/
+.idea/
+logs
