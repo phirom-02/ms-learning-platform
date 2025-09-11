@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="421cc7a5-fe32-4bbd-af38-d703e8f1a1a9" name="Changes" comment="refactor: change ID datatype from String to UUID for user-service">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7f510b6-bbfa-434f-a487-2e5f6766c3f3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e7f510b6-bbfa-434f-a487-2e5f6766c3f3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/auth-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/auth-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/config-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/config-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/course-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/course-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/course-service/src/main/resources/db/migration/V1__init_database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/discovery-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/discovery-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/enrollment-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/enrollment-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/gateway-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/gateway-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/user-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/services/user-service/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,9 +173,10 @@
     "Spring Boot.UserApplication.executor": "Run",
     "Spring Boot.UserServiceApplication.executor": "Run",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "develop",
+    "jdk.selected.JAVA_MODULE": "openjdk-22",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/phirom/Programming/Assignments/ms-learning-platform/services/enrollment-service/src/main/java/com/firom/lms/entRepo",
+    "last_opened_file_path": "/home/phirom/Programming/Assignments/ms-learning-platform/services/enrollment-service/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -197,11 +209,11 @@
       <recent name="com.firom.lms.consumers" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms/entRepo" />
-      <recent name="$PROJECT_DIR$/services/enrollment-service/src/main/java/com/firom/lms" />
-      <recent name="$PROJECT_DIR$/services/course-service/src/main/java/com/firom/lms/configs/security" />
-      <recent name="$PROJECT_DIR$/services/course-service/src/main/java/com/firom/lms" />
-      <recent name="$PROJECT_DIR$/services" />
+      <recent name="$PROJECT_DIR$/services/enrollment-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/services/notification-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/services/course-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/services/auth-service/src/main/resources" />
+      <recent name="$PROJECT_DIR$/services/user-service/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.firom.lms.configs.rabbitmq" />
@@ -333,9 +345,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.EnrollmentServiceApplication" />
         <item itemvalue="Spring Boot.UserServiceApplication" />
         <item itemvalue="Spring Boot.AuthServiceApplication" />
-        <item itemvalue="Spring Boot.EnrollmentServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
@@ -768,7 +780,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757506493199</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="add: add general exception handler">
+      <option name="closed" value="true" />
+      <created>1757557029749</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1757557029749</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -786,7 +806,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: implement basic account email verification and account enable status update" />
     <MESSAGE value="feat: demo setup message queue rabbit mq" />
     <MESSAGE value="feat: implement email verification featuer" />
     <MESSAGE value="feat: implement email verification feature" />
@@ -811,6 +830,7 @@
     <MESSAGE value="feat: more update on security" />
     <MESSAGE value="feat: implement basic course enrollment" />
     <MESSAGE value="refactor: change ID datatype from String to UUID for user-service" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: change ID datatype from String to UUID for user-service" />
+    <MESSAGE value="add: add general exception handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: add general exception handler" />
   </component>
 </project>
